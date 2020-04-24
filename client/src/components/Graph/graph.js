@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import API from '../../utils/API'
 
 const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -29,12 +30,36 @@ const data = {
 };
 
 class Graph extends Component {
+
+    generateStock(e) {
+        e.preventDefault()
+        
+        API.searchStock( this.refs.time.value , this.refs.name.value )
+        .then(data => console.log(data))
+    }
+
+
     render() {
         return (
-            <div >
-                <canvas id="myChart" width="400" height="400"></canvas>
-                <h2>Line Example</h2>
-                <Line data={data} />
+            <div>
+                <form onSubmit={this.generateStock.bind(this)}>
+                    <div>
+                        <label for="name">Stock Label</label>
+                        <input type='text' ref="name" />
+                    </div>
+                    <div>
+                        <label for="time">Choose a timeframe:</label>
+                        <select id="time" ref="time">
+                            <option value="TIME_SERIES_DAILY">Daily</option>
+                            <option value="TIME_SERIES_WEEKLY">Weekly</option>
+                            <option value="TIME_SERIES_MONTHLY">Monthly</option>
+                        </select>
+                    </div>
+                    <input type='submit' value='Submit' />
+                </form>
+                <div >
+                    <Line data={data} />
+                </div>
             </div>
         )
     }
