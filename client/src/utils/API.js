@@ -23,6 +23,7 @@ export default {
   searchStock: function (time, company) {
     var key = "Y630EXU2OC7ZDZ1G"
     var stockDataString = "https://www.alphavantage.co/query?function=" + time + "&symbol=" + company + "&apikey=" + key
+    console.log(stockDataString)
     return axios.get(stockDataString)
   }
 };

@@ -6,8 +6,8 @@ import Graph from "./components/Graph";
 function App() {
   return (
     <div>
-      <Nav />
-      <Books />
+      {/* <Nav />
+      <Books /> */}
       <Graph />
     </div>
   );
