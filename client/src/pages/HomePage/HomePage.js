@@ -1,6 +1,7 @@
 import React from 'react';
 import Jumbo from '../../components/Jumbotron'
 import StockNav from '../../components/StockNav';
+
 function HomePage(props) {
     return <>
     <Jumbo/>

@@ -12,6 +12,7 @@ function App() {
         <Nav /> //always going to show a nav component
         <Route exact path='/' component={HomePage} />
         <Route exact path="/articles" component={Articles} />
+        
       </>
     </Router>
 
