@@ -1,4 +1,17 @@
 import React from "react";
+import Books from "./pages/Books";
+import Nav from "./components/Nav";
+import Graph from "./components/Graph";
+
+
+function App() {
+  return (
+    <div>
+      {/* <Nav />
+      <Books /> */}
+      <Graph />
+    </div>
+=======
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from './pages/Articles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
