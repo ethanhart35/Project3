@@ -1,9 +1,31 @@
 const express = require("express");
-
+var mongojs = require("mongojs");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+var axios = require("axios");
+var cheerio = require("cheerio");
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+
+// Database configuration
+var databaseUrl = "scraper";
+var collections = ["scrapedData"];
+
+var db = mongojs(databaseUrl, collections);
+db.on("error", function(error) {
+  console.log("Database Error:", error);
+});
+
+app.get("/scrape", function(req,res){
+  axios.get("https://www.nytimes.com/topic/subject/finances")
+  .then(function(response){
+    var $ = cheerio.load(response.data);
+    console.log(res);
+    console.log(response);
+  })
+  res.send("Scrape Complete")
+})
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
