@@ -1,21 +1,27 @@
 import React from "react";
+import Nav from "./components/Nav";
+import Graph from "./components/Graph";
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from './pages/Articles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Nav from './components/Nav';
 
 function App() {
   return (
-
+    <div>
+    <Nav /> //always going to show a nav component
+    <Graph />
     <Router>
-      <>
-        <Nav /> //always going to show a nav component
+      <div>  
         <Route exact path='/' component={HomePage} />
         <Route exact path="/articles" component={Articles} />
+<<<<<<< HEAD
         
       </>
+=======
+      </div>
+>>>>>>> 1200ed0e3468577d868ce9e6a58fd6c52087bbf9
     </Router>
-
+    </div>
   );
 
 }
