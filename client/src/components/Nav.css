@@ -1,0 +1,10 @@
+.navbar {
+    position:fixed;
+    top:0;
+    height: 10vh;
+    width: 100%;
+}
+.navbar-brand {
+    float: left;
+    margin-left: 20px;
+}
