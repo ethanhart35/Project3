@@ -2,6 +2,7 @@ import React from "react";
 import "./Nav.css";
 
 const Nav = (props) => (
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" id="brand" href="/">FauxFinance</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,9 +18,25 @@ const Nav = (props) => (
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-primary py-0" href="#">Sign In</a>
+=======
+    <nav className="navbar navbar-light bg-light">
+        <a className="navbar-brand" href="/">FauxFinance</a>
+
+        <ul className="nav">
+                <li className="nav-item active">
+                    <a className="nav-link" href="/articles">Articles</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/market">Market</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/login">Sign In</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/register">Register</a>
+>>>>>>> lots of reformating so the navbar and the routing now works as intended, added placeholder login and register peices
                 </li>
             </ul>
-        </div>
     </nav>
 );
 
