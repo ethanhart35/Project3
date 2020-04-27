@@ -1,4 +1,7 @@
 .jumbotron {
+    background-color: #63D9FE;
+    font-style: Rightous; font-family: 'Righteous', cursive;
+    color:white;
     height: 90vh;
     margin-top: 10vh;
 }
