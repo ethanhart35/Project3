@@ -46,6 +46,10 @@ class Graph extends Component {
         // this.setstate cant use 'this' whist in the API.search callback, this is the fix
         let currentComponent = this
 
+        if(this.refs.name.value===""){
+            return false;
+        }
+
         // the API timeInterval name and the JSON data recovery timeInterval name are different and need to be
         // changed in order so variables can be grabbed later
         let dataInterval = []
@@ -65,7 +69,7 @@ class Graph extends Component {
         API.searchStock(this.refs.time.value, this.refs.name.value)
             .then(function (APIdata) {
                 console.log(APIdata)
-                console.log(dataInterval)
+
                 // all the actual numbers "meta data" also has useful information to be used (eventually)
                 let stockData = APIdata.data[dataInterval]
 
