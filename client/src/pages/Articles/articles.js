@@ -20,8 +20,8 @@ var results=[];
 //     console.log(results);
 // });
 
-API.scrape()
-    console.load(response)
+//  API.scrape()
+//     console.load(response)
 
 
 
