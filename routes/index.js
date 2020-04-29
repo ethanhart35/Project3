@@ -1,9 +1,12 @@
 const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
+const stockRoutes = require("./stocks")
 
-// API Routes
+
+// old bookapp API Route
 router.use("/api", apiRoutes);
+
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
@@ -11,3 +14,6 @@ router.use(function(req, res) {
 });
 
 module.exports = router;
+
+
+// old code but might still be useful
