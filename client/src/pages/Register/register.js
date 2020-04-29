@@ -5,8 +5,14 @@ class Register extends Component {
 
     formSubmit(e){
         e.preventDefault()
-        console.log(this.refs.Name.value)
-        API.registerUser(this.refs.Name.value)
+
+        let registerData = {
+            name: this.refs.Name.value,
+            email: this.refs.Email.value,
+            password: this.refs.Password.value
+        }
+
+        API.registerUser(registerData)
     }
 
     render() {

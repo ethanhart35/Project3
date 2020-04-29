@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const userController = require("../controllers/userController");
+// const userController = require("../controllers/userController");
 
 // // Matches with "/api/books"
 // router.route("/")
@@ -13,9 +13,8 @@ const userController = require("../controllers/userController");
 //   .put(booksController.update)
 //   .delete(booksController.remove);
 
-router.route("/:id", (req, res) => {
-    console.log(req.body)
-})
+router.route("/login")
+    .post((req) => console.log(req.body))
   
 
 module.exports = router;
