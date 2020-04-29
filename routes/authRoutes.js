@@ -12,6 +12,10 @@ const userController = require("../controllers/userController");
 //   .get(booksController.findById)
 //   .put(booksController.update)
 //   .delete(booksController.remove);
+
+router.route("/:id", (req, res) => {
+    console.log(req.body)
+})
   
 
 module.exports = router;

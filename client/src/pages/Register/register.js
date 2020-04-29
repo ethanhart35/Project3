@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import API from "../../utils/API"
 
 class Register extends Component {
 
     formSubmit(e){
         e.preventDefault()
         console.log(this.refs.Name.value)
+        API.registerUser(this.refs.Name.value)
     }
 
     render() {
