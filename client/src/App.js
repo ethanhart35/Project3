@@ -13,7 +13,7 @@ import Register from './pages/Register';
 function App() {
   return (
     <div>
-      <Nav /> //always going to show a nav component
+      <Nav /> 
       <Router>
         <div className="pt-5">  
           <Route exact path='/' component={HomePage} />

@@ -2,21 +2,21 @@ import React from "react";
 import "./Nav.css";
 
 const Nav = (props) => (
-    <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="/">FauxFinance</a>
+    <nav className="navbar navbar-light">
+        <a className="navbar-brand" id="brand" href="/">FauxFinance</a>
 
         <ul className="nav">
                 <li className="nav-item active">
-                    <a className="nav-link" href="/articles">Articles</a>
+                    <a className="nav-link btn btn-primary py-0" href="/articles">Articles</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/market">Market</a>
+                    <a className="nav-link btn btn-primary py-0" href="/market">Market</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/login">Sign In</a>
+                    <a className="nav-link btn btn-primary py-0" href="/login">Sign In</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/register">Register</a>
+                    <a className="nav-link btn btn-primary py-0" href="/register">Register</a>
                 </li>
             </ul>
     </nav>
