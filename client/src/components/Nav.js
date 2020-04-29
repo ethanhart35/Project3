@@ -12,11 +12,13 @@ const Nav = (props) => (
                 <li className="nav-item">
                     <a className="nav-link btn btn-primary py-0" href="/market">Market</a>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link btn btn-primary py-0" href="/login">Sign In</a>
-                </li>
+                
                 <li className="nav-item">
                     <a className="nav-link btn btn-primary py-0" href="/register">Register</a>
+                </li>
+                          
+                <li className="nav-item">
+                    <a className="nav-link btn btn-primary py-0" href="/login">Sign In</a>
                 </li>
             </ul>
     </nav>
