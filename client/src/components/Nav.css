@@ -1,6 +1,24 @@
 .navbar {
+background-color: #63D9FE;
     position:fixed;
     top:0;
-    height: 10vh;
+    height: 5vh;
     width: 100%;
+
 }
+.navbar-brand {
+    
+    float: left;
+    margin-left: 20px;
+}
+#brand {
+    font-style: Rightous; font-family: 'Righteous', cursive;
+    color: red;
+    
+}
+.nav-item {
+    margin-right: 2em;
+}
+=======
+}
+
