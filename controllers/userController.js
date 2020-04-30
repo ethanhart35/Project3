@@ -70,7 +70,8 @@ module.exports = {
         }
     },
     login: function (req, res) {
-        console.log(req.body)
+        const { email, password } = req.body
+        console.log(email+password)
         // passport.use(
         //     new localStrategy({ usernameField: 'email' }, (email, password, done) => {
 

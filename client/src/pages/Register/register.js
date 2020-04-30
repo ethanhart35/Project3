@@ -5,7 +5,6 @@ class Register extends Component {
 
     formSubmit(e, name, email, password1, password2) {
         e.preventDefault()
-
         API.registerUser({name,email,password1,password2})
     }
 
