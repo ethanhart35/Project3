@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const userController = require("../controllers/userController");
+const userController = require("../controllers/userController");
 
 // // Matches with "/api/books"
 // router.route("/")
@@ -14,7 +14,12 @@ const router = require("express").Router();
 //   .delete(booksController.remove);
 
 router.route("/login")
-    .post((req) => console.log(req.body))
+    // .post(console.log(req.body))
+
+router.route("/register")
+    .post(userController.register)
+
+router.route("/logout")
   
 
 module.exports = router;

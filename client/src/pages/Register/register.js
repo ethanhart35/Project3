@@ -9,7 +9,8 @@ class Register extends Component {
         let registerData = {
             name: this.refs.Name.value,
             email: this.refs.Email.value,
-            password: this.refs.Password.value
+            password1: this.refs.Password1.value,
+            password2: this.refs.Password2.value
         }
 
         API.registerUser(registerData)
@@ -30,12 +31,16 @@ class Register extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label >Email address</label>
-                                        <input className="form-control" ref="Email" placeholder="Enter email" />
+                                        <input className="form-control" ref="Email" placeholder="Email" />
                                         <small className="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
                                     <div className="form-group">
                                         <label >Password</label>
-                                        <input className="form-control" ref="Password" placeholder="Password" />
+                                        <input className="form-control" ref="Password1" placeholder="Password" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label >Reenter password</label>
+                                        <input className="form-control" ref="Password2" placeholder="Password authentication" />
                                     </div>
                                     <button type="submit" className="btn btn-primary">Register Account</button>
                                     <p className="text-muted">Already have an account? <a href="/login">Login</a></p>

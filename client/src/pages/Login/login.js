@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import API from '../../utils/API';
 
 class Login extends Component {
 
+    formSubmit(e){
+        e.preventDefault()
 
+        let loginData = {
+            email: this.refs.email.value,
+            password: this.refs.password.value,
+        } 
+
+        API.loginUser(loginData)
+    }
 
     render() {
         return (
@@ -12,10 +22,10 @@ class Login extends Component {
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">Login</h5>
-                                <form>
+                                <form onsubmit={this.formSubmit.bind(this)}>
                                     <div className="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                                        <input className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                                     </div>
                                     <div className="form-group">
                                         <label for="exampleInputPassword1">Password</label>

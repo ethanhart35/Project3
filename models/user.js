@@ -9,9 +9,9 @@ const userSchema = new Schema({
     },
     stockData: [
         {
-            name: { type: String, required: true },
-            quantity: { type: Number, required: true },
-            purchaseValue: { type: Number, required: true },
+            name: { type: String },
+            quantity: { type: Number },
+            purchaseValue: { type: Number },
         }
     ]
 
