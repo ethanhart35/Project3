@@ -32,13 +32,19 @@ module.exports = {
             errors.push({ msg: 'Password must be at least 6 characters' });
         }
         if (errors.length > 0) {
+
+            // push this back to the frontend register page with messages
             console.log(errors)
+
         } else {
             // final check to see if user email already used
             db.User.findOne({ email: email })
                 .then((user) => {
                     if (user) {
+
+                        // needs frontend push to register page
                         console.log('user already exists')
+
                     } else {
                         const newUser = new User({
                             userData: {
@@ -48,8 +54,25 @@ module.exports = {
                             }
                         });
 
-                        console.log(newUser)
-                        
+                        bcrypt.genSalt(10, (err, salt) => {
+                            if (err) throw err;
+                            bcrypt.hash(newUser.userData.password, salt, (err, hash) => {
+                                if (err) throw err;
+
+                                newUser.userData.password = hash;
+                                newUser.save()
+                                    .then(user => {
+                                        //   req.flash(
+                                        //     'success_msg',
+                                        //     'You are now registered and can log in'
+                                        //   );
+                                        //   res.redirect('/users/login');
+                                        console.log(user)
+                                    })
+                                    .catch(err => console.log(err));
+                            });
+                        });
+
                     }
                 })
 

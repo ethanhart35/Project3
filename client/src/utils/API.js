@@ -7,6 +7,7 @@ export default {
   getStock: function (id) {
     return axios.get("/stocks/"+id)
   },
+  
   registerUser: function (data) {
     return axios.post("/auth/register", data)
   },
