@@ -1,13 +1,16 @@
 const express = require("express");
 var mongojs = require("mongojs");
 const mongoose = require("mongoose");
-const Routes = require("./routes/")
+const passport = require('passport')
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
 var axios = require("axios");
 var cheerio = require("cheerio");
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Passport Config
+// require('./config/passport')(passport);
 
 // Database configuration
 var databaseUrl = "scraper";
@@ -18,10 +21,14 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

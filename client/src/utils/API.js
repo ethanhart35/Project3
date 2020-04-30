@@ -12,7 +12,7 @@ export default {
     return axios.post("/auth/register", data)
   },
   loginUser: function (data) {
-    return axios.post("/auth/login"+ data)
+    return axios.post("/auth/login", data)
   },
 
   searchStock: function (time, company) {

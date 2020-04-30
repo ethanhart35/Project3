@@ -3,17 +3,10 @@ import API from "../../utils/API"
 
 class Register extends Component {
 
-    formSubmit(e){
+    formSubmit(e, name, email, password1, password2) {
         e.preventDefault()
 
-        let registerData = {
-            name: this.refs.Name.value,
-            email: this.refs.Email.value,
-            password1: this.refs.Password1.value,
-            password2: this.refs.Password2.value
-        }
-
-        API.registerUser(registerData)
+        API.registerUser({name,email,password1,password2})
     }
 
     render() {
@@ -24,7 +17,12 @@ class Register extends Component {
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">Create an Account</h5>
-                                <form onSubmit={this.formSubmit.bind(this)}>
+                                <form onSubmit={e => this.formSubmit( e,
+                                    this.refs.Name.value,
+                                    this.refs.Email.value,
+                                    this.refs.Password1.value,
+                                    this.refs.Password2.value
+                                )}>
                                     <div className="form-group">
                                         <label >Name</label>
                                         <input className="form-control" ref="Name" placeholder="Name" />
@@ -36,11 +34,11 @@ class Register extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label >Password</label>
-                                        <input className="form-control" ref="Password1" placeholder="Password" />
+                                        <input type="password" className="form-control" ref="Password1" placeholder="Password" />
                                     </div>
                                     <div className="form-group">
                                         <label >Reenter password</label>
-                                        <input className="form-control" ref="Password2" placeholder="Password authentication" />
+                                        <input type="password" className="form-control" ref="Password2" placeholder="Password authentication" />
                                     </div>
                                     <button type="submit" className="btn btn-primary">Register Account</button>
                                     <p className="text-muted">Already have an account? <a href="/login">Login</a></p>

@@ -1,22 +1,15 @@
 const db = require("../models");
 const User = require("../models/user")
 const bcrypt = require("bcryptjs")
+// const passport = require('passport');
+
+// const { forwardAuthenticated } = require('../config/auth');
+
+// const localStrategy = require('passport-local').Strategy()
+// const mongoose = require("mongoose")
+
 
 module.exports = {
-    //   findAll: function(req, res) {
-    //     db.Book
-    //       .find(req.query)
-    //       .sort({ date: -1 })
-    //       .then(dbModel => res.json(dbModel))
-    //       .catch(err => res.status(422).json(err));
-    //   },
-    //   findById: function(req, res) {
-    //     db.Book
-    //       .findById(req.params.id)
-    //       .then(dbModel => res.json(dbModel))
-    //       .catch(err => res.status(422).json(err));
-    //   },
-
 
     register: function (req, res) {
         const { name, email, password1, password2 } = req.body
@@ -47,19 +40,17 @@ module.exports = {
 
                     } else {
                         const newUser = new User({
-                            userData: {
-                                name: name,
-                                email: email,
-                                password: password1
-                            }
+                            name: name,
+                            email: email,
+                            password: password1
                         });
 
                         bcrypt.genSalt(10, (err, salt) => {
                             if (err) throw err;
-                            bcrypt.hash(newUser.userData.password, salt, (err, hash) => {
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
                                 if (err) throw err;
 
-                                newUser.userData.password = hash;
+                                newUser.password = hash;
                                 newUser.save()
                                     .then(user => {
                                         //   req.flash(
@@ -78,22 +69,34 @@ module.exports = {
 
         }
     },
-    // db.User
-    //   .create(req.body)
-    //   .then(dbModel => res.json(dbModel))
-    //   .catch(err => res.status(422).json(err));
+    login: function (req, res) {
+        console.log(req.body)
+        // passport.use(
+        //     new localStrategy({ usernameField: 'email' }, (email, password, done) => {
 
-    //   update: function(req, res) {
-    //     db.Book
-    //       .findOneAndUpdate({ _id: req.params.id }, req.body)
-    //       .then(dbModel => res.json(dbModel))
-    //       .catch(err => res.status(422).json(err));
-    //   },
-    //   remove: function(req, res) {
-    //     db.Book
-    //       .findById({ _id: req.params.id })
-    //       .then(dbModel => dbModel.remove())
-    //       .then(dbModel => res.json(dbModel))
-    //       .catch(err => res.status(422).json(err));
-    //   }
+        //         User.findOne({ email: email })
+        //             .then(user => {
+        //                 console.log(user)
+        //                 // if (!user) return done(null);
+
+        //                 // bcrypt.compare(password, user.userData.password, (err, isMatch) => {
+        //                 //     if (err) throw err;
+
+        //                 //     if(isMatch){
+
+        //                 //     }else{
+
+        //                 //     }
+        //                 // })
+        //             })
+        //             .catch(err => console.log(err))
+
+        //     })
+        // )
+    },
+    logout: function (req, res) {
+        // req.logout();
+        // req.flash('success_msg', 'You are logged out');
+        // res.redirect('/login');
+    },
 };

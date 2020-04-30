@@ -1,14 +1,11 @@
 import React from "react"
-
 import Nav from "./components/Nav";
-
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from "./pages/Articles/articles";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Market from './pages/Market';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
 
 function App() {
   return (
@@ -25,7 +22,6 @@ function App() {
       </Router>
     </div>
   );
-
 }
 
 export default App;
