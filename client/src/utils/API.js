@@ -22,22 +22,10 @@ export default {
     return axios.get(stockDataString)
   },
 
+scrape: function(){
+  // return axios.get("https://www.nytimes.com/topic/subject/finances")
+  return axios.get("https://www.google.com")
+}
+  
 
-  scrape: function (res) {
-    axios.get("https://www.nytimes.com/topic/subject/finances")
-      .then(function (response) {
-        var $ = cheerio.load(response.data);
-        var results = [];
-        $("body").each(function (i, element) {
-          var title = $(element).children("h2").text();
-          var link = $(element).find("a");
-
-          results.push({
-            title: title,
-            link: link
-          });
-        });
-        console.log(results);
-      });
-  }
 };
