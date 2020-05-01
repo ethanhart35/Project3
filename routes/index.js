@@ -1,19 +1,15 @@
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("./api");
-const stockRoutes = require("./stocks")
+// const path = require("path");
+// const router = require("express").Router();
+// const authRoutes = require("./authRoutes");
+// const stockRoutes = require("./stockRoutes")
 
+// router.use("/auth", authRoutes);
+// router.use("/stocks", stockRoutes);
 
-// old bookapp API Route
-router.use("/api", apiRoutes);
+// // If no API routes are hit, send the React app
+// router.use(function(req, res) {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
 
+// module.exports = router;
 
-// If no API routes are hit, send the React app
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
-
-module.exports = router;
-
-
-// old code but might still be useful

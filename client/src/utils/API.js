@@ -1,35 +1,18 @@
 import axios from "axios";
 var cheerio = require("cheerio");
 export default {
-  // // Gets all books
-  // getBooks: function () {
-  //   return axios.get("/api/books");
-  // },
-  // // Gets the book with the given id
-  // getBook: function (id) {
-  //   return axios.get("/api/books/" + id);
-  // },
-  // // Deletes the book with the given id
-  // deleteBook: function (id) {
-  //   return axios.delete("/api/books/" + id);
-  // },
-  // // Saves a book to the database
-  // saveBook: function (bookData) {
-  //   return axios.post("/api/books", bookData);
-  // },
-
-  // ===========================================================
   getStocks: function () {
     return axios.get("/stocks")
   },
   getStock: function (id) {
     return axios.get("/stocks/"+id)
   },
-  registerUser: function () {
-    // return axios.get("/auth/"+          )
+  
+  registerUser: function (data) {
+    return axios.post("/auth/register", data)
   },
-  loginUser: function () {
-    // return axios.get("/auth/"+          )
+  loginUser: function (data) {
+    return axios.post("/auth/login", data)
   },
 
   searchStock: function (time, company) {
