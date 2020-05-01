@@ -1,4 +1,3 @@
-const db = require("../models");
 const User = require("../models/user")
 const bcrypt = require("bcryptjs")
 // const passport = require('passport');
@@ -8,36 +7,29 @@ const bcrypt = require("bcryptjs")
 // const localStrategy = require('passport-local').Strategy()
 // const mongoose = require("mongoose")
 
-
 module.exports = {
 
     register: function (req, res) {
         const { name, email, password1, password2 } = req.body
-        let errors = [];
+        let message = [];
 
         if (!name || !email || !password1 || !password2) {
-            errors.push({ msg: 'Please enter all fields' });
+            message.push({ msg: 'Please enter all fields' });
         }
         if (password1 != password2) {
-            errors.push({ msg: 'Passwords do not match' });
+            message.push({ msg: 'Passwords do not match' });
         }
         if (password1.length < 6) {
-            errors.push({ msg: 'Password must be at least 6 characters' });
+            message.push({ msg: 'Password must be at least 6 characters' });
         }
-        if (errors.length > 0) {
-
-            // push this back to the frontend register page with messages
-            console.log(errors)
-
+        if (message.length > 0) {
+            res.json(message)
         } else {
             // final check to see if user email already used
-            db.User.findOne({ email: email })
+            User.findOne({ email: email })
                 .then((user) => {
                     if (user) {
-
-                        // needs frontend push to register page
-                        console.log('user already exists')
-
+                        res.json([{ msg: "User already exists" }])
                     } else {
                         const newUser = new User({
                             name: name,
@@ -53,12 +45,8 @@ module.exports = {
                                 newUser.password = hash;
                                 newUser.save()
                                     .then(user => {
-                                        //   req.flash(
-                                        //     'success_msg',
-                                        //     'You are now registered and can log in'
-                                        //   );
-                                        //   res.redirect('/users/login');
                                         console.log(user)
+                                        res.json([{ msg: "You can now login" }])
                                     })
                                     .catch(err => console.log(err));
                             });
@@ -71,7 +59,7 @@ module.exports = {
     },
     login: function (req, res) {
         const { email, password } = req.body
-        console.log(email+password)
+        console.log(email + password)
         // passport.use(
         //     new localStrategy({ usernameField: 'email' }, (email, password, done) => {
 
