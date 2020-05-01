@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from '../../components/Nav';
 import API from '../../utils/API';
-var cheerio = require("cheerio");
+// var cheerio = require("cheerio");
 var axios = require("axios");
 var results=[];
 // axios.get("https://www.nytimes.com/topic/subject/finances")
@@ -21,7 +21,7 @@ var results=[];
 // });
 
 API.scrape()
-    console.load(response)
+    // console.load(response)
 
 
 
