@@ -14,6 +14,10 @@ export default {
   loginUser: function (data) {
     return axios.post("/auth/login", data)
   },
+  logoutUser: function(){
+    console.log('logout click')
+    return axios.get("/auth/logout")
+  },
 
   searchStock: function (time, company) {
     var key = "Y630EXU2OC7ZDZ1G"
