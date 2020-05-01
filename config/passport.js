@@ -2,7 +2,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
 // Load User model
-const User = require('../models/User');
+const User = require('../models/user');
 
 module.exports = function(passport) {
   passport.use(
@@ -13,7 +13,7 @@ module.exports = function(passport) {
       }).then(user => {
         if (!user) {
             console.log("null user")
-        //   return done(null, false, { message: 'That email is not registered' });
+          return done(null, false, { message: 'That email is not registered' });
         }
 
         // Match password
@@ -21,10 +21,10 @@ module.exports = function(passport) {
           if (err) throw err;
           if (isMatch) {
               console.log("user match! login needed")
-            // return done(null, user);
+            return done(null, user);
           } else {
               console.log("incorrect")
-            // return done(null, false, { message: 'Password incorrect' });
+            return done(null, false, { message: 'Password incorrect' });
           }
         });
       });

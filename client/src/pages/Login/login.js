@@ -16,7 +16,6 @@ class Login extends Component {
     // }
     formSubmit = (e, email, password) => {
         e.preventDefault()
-        console.log(email+password)
         API.loginUser({email,password})
     }
 

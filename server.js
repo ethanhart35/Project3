@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Passport Config
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 // Database configuration
 var databaseUrl = "scraper";

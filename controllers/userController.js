@@ -1,6 +1,6 @@
 const User = require("../models/user")
 const bcrypt = require("bcryptjs")
-// const passport = require('passport');
+const passport = require('passport');
 
 // const { forwardAuthenticated } = require('../config/auth');
 
@@ -57,32 +57,31 @@ module.exports = {
 
         }
     },
-    login: function (req, res) {
+    login: function (req, res, next) {
         const { email, password } = req.body
-        console.log(email + password)
-        // passport.use(
-        //     new localStrategy({ usernameField: 'email' }, (email, password, done) => {
-
-        //         User.findOne({ email: email })
-        //             .then(user => {
-        //                 console.log(user)
-        //                 // if (!user) return done(null);
-
-        //                 // bcrypt.compare(password, user.userData.password, (err, isMatch) => {
-        //                 //     if (err) throw err;
-
-        //                 //     if(isMatch){
-
-        //                 //     }else{
-
-        //                 //     }
-        //                 // })
-        //             })
-        //             .catch(err => console.log(err))
-
-        //     })
-        // )
+    
+        passport.authenticate('local', {
+            successRedirect: '/dashboard',
+            failureRedirect: '/login',
+            failureFlash: true
+        })(req, res, next);
     },
+    // passport.use(
+    //     new localStrategy({ usernameField: 'email' }, (email, password, done) => {
+    //         User.findOne({ email: email })
+    //             .then(user => {
+    //                 console.log(user)
+    //                 // if (!user) return done(null);
+    //                 // bcrypt.compare(password, user.userData.password, (err, isMatch) => {
+    //                 //     if (err) throw err;
+    //                 //     if(isMatch){
+    //                 //     }else{
+    //                 //     }
+    //                 // })
+    //             })
+    //             .catch(err => console.log(err))
+    //     })
+    // )
     logout: function (req, res) {
         // req.logout();
         // req.flash('success_msg', 'You are logged out');
