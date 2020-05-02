@@ -1,7 +1,7 @@
 import React from 'react';
 import './Jumbotron.css';
 
-export default ()=> <div className="jumbotron bg-primary">
+export default ()=> <div className="jumbotron">
 <h1 className="display-4">FauxFinance</h1>
 <p className="lead">Try our simulator</p>
 <hr className="my-4"/>

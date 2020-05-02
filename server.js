@@ -17,15 +17,6 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-app.get("/scrape", function(req,res){
-  axios.get("https://www.nytimes.com/topic/subject/finances")
-  .then(function(response){
-    var $ = cheerio.load(response.data);
-    console.log(res);
-    console.log(response);
-  })
-  res.send("Scrape Complete")
-})
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

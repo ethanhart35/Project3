@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import reactDom from 'react-dom'
-// import { Line } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 import API from '../../utils/API'
 
@@ -20,7 +18,7 @@ class Graph extends Component {
                         label: 'high',
                         fill: false,
                         borderColor: 'rgba(0,0,255,1)',
-                        data: [1, 3, 4, 2]
+                        data: [1, 3, 4, 2, 5]
                     }, {
                         label: 'low',
                         fill: false,
@@ -45,9 +43,8 @@ class Graph extends Component {
 
     generateStock(e) {
         e.preventDefault()
-        // API call cant use 'this' whist in the callback this is the fix
+        // this.setstate cant use 'this' whist in the API.search callback, this is the fix
         let currentComponent = this
-        let volume = this.refs.volume.value
 
         // the API timeInterval name and the JSON data recovery timeInterval name are different and need to be
         // changed in order so variables can be grabbed later
@@ -143,6 +140,7 @@ class Graph extends Component {
     render() {
         return (
             <div>
+                <br></br><br></br>
                 <form className="form-inline" onSubmit={this.generateStock.bind(this)}>
                     <div class="form-group p-2">
                         <label for="name">Stock Label</label>

@@ -1,22 +1,29 @@
-import React from "react";
+import React from "react"
+
 import Nav from "./components/Nav";
 import Graph from "./components/Graph";
 import Form from "./components/Form;"
 import HomePage from "./pages/HomePage/HomePage";
-import Articles from './pages/Articles';
+import Articles from "./pages/Articles/articles";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Market from './pages/Market';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
 
 function App() {
   return (
     <div>
-    <Nav /> //always going to show a nav component
-    <Graph />
-    <Router>
-      <div>  
-        <Route exact path='/' component={HomePage} />
-        <Route exact path="/articles" component={Articles} />
-      </div>
-    </Router>
+      <Nav /> 
+      <Router>
+        <div className="pt-5">  
+          <Route exact path='/' component={HomePage} />
+          <Route exact path="/articles" component={Articles} />
+          <Route exact path="/market" component={Market} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+        </div>
+      </Router>
     </div>
   );
 
