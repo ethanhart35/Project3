@@ -29,23 +29,6 @@ export default {
 
 scrape: function(){
  return axios.get("https://www.nytimes.com/topic/subject/finances")
-//   .then(function(response){
-//   var $ = cheerio.load(response.data);
-//   $("div").each(function(i, element) {
-//     // Save an empty result object
-//     var result = {};
-
-//     // Add the text and href of every link, and save them as properties of the result object
-//     result.title = $(this)
-//       .children().children("h2")
-//       .text();
-//       console.log(result)
-//     result.link = $(this)
-//       .children("a")
-//       .attr("href");
-//       return result;
-//   });
-// });
 }
 
 };

@@ -38,7 +38,7 @@ class Articles extends Component {
             <br/>
             <br/>
             <div>
-                <h1>Articles</h1>
+                <h1>Learn About Finance with up to date Articles</h1>
                 {this.state.titleArr.map((item) => <a href={"https://www.nytimes.com/" + item.link}><h2>{item.title}</h2></a>)}
             
             </div>
