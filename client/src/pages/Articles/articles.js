@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Nav from '../../components/Nav';
 import API from '../../utils/API';
-// var cheerio = require("cheerio");
-// var axios = require("axios");
+var cheerio = require("cheerio");
 
 
 class Articles extends Component {
     state = {
-      articles: []
+        titleArr: []
     };
   
     componentDidMount() {
@@ -16,18 +15,33 @@ class Articles extends Component {
   
     loadArticles = () => {
       API.scrape()
-        .then(res => this.setState({ articles: res.data }))
+        .then(res => {
+          var $ = cheerio.load(res.data);
+          var titleObjArr = [];
+          $(".css-ye6x8s").each(function(){
+            var titleObj = {
+              title:$(this).children().children().children().children("h2").text(),
+              link:$(this).children().children().children("a").attr("href")
+            }
+            titleObjArr.push(titleObj);
+          })
+          this.setState({ titleArr: titleObjArr });
+          console.log(this.state)
+        })
         .catch(err => console.log(err));
     };
-  
+
     render() {
       return (
         <div>
             <Nav/>
             <br/>
             <br/>
+            <div>
                 <h1>Articles</h1>
-            <div>{this.state.articles}</div>
+                {this.state.titleArr.map((item) => <a href={"https://www.nytimes.com/" + item.link}><h2>{item.title}</h2></a>)}
+            
+            </div>
         </div>
       );
     }
