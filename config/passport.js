@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 
 const User = require('../models/user');
 
+// this is the custom passport config file to sort information and establish login/out
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -12,7 +13,6 @@ module.exports = function (passport) {
       User.findOne({ email: email })
         .then(user => {
           if (!user) {
-            console.log("null user")
             return done(null, false);
           }
           
@@ -20,10 +20,8 @@ module.exports = function (passport) {
           bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
-              console.log("user match! login needed")
               return done(null, user);
             } else {
-              console.log("incorrect match")
               return done(null, false);
             }
           });

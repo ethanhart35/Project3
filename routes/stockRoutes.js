@@ -14,4 +14,8 @@ const stockController = require("../controllers/stockController");
 //   .delete(booksController.remove);
   
 
+router.route("/")
+    .post(stockController.buyStock)
+
+
 module.exports = router;

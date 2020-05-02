@@ -1,11 +1,12 @@
 const express = require("express");
-var mongojs = require("mongojs");
+const session = require('express-session');
+const mongojs = require("mongojs");
 const mongoose = require("mongoose");
 const passport = require('passport')
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
-var axios = require("axios");
-var cheerio = require("cheerio");
+const axios = require("axios");
+const cheerio = require("cheerio");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -21,9 +22,18 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-// Define middleware here
+// Express
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Express/passport user cookie/session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
 
 // Passport middleware
 app.use(passport.initialize());

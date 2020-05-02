@@ -56,7 +56,9 @@ module.exports = {
             successRedirect: '/',
             failureRedirect: '/login',
             failureFlash: true
-        })(req, res, next);
+        })(req, res, next)
+        // res.json({msg: "you have logged in"})
+        
     },
     logout: function (req, res) {
         req.logout();

@@ -12,10 +12,8 @@ class Register extends Component {
         const currentComponent = this
 
         API.registerUser({ name, email, password1, password2 })
-            .then(res => {
-                currentComponent.setState({ msg: res.data })
-                console.log(this.state.msg)
-            })
+            .then(res => currentComponent.setState({ msg: res.data })
+            )
     }
 
     render() {
@@ -26,7 +24,7 @@ class Register extends Component {
                     <div key={i} className="row">
                         <div className="col">
                             <div className="alert alert-dark alert-dismissible" role="alert">
-                                <h4 className="content-center">{msg.msg}</h4>
+                                <h4 className="text-center">{msg.msg}</h4>
                             </div>
                         </div>
                     </div>

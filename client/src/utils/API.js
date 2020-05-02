@@ -7,6 +7,10 @@ export default {
   getStock: function (id) {
     return axios.get("/stocks/"+id)
   },
+
+  buyStock: function (data) {
+    return axios.post("/stocks", data)
+  },
   
   registerUser: function (data) {
     return axios.post("/auth/register", data)
@@ -15,7 +19,6 @@ export default {
     return axios.post("/auth/login", data)
   },
   logoutUser: function(){
-    console.log('logout click')
     return axios.get("/auth/logout")
   },
 
