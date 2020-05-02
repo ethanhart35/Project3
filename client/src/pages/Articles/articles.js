@@ -16,17 +16,7 @@ class Articles extends Component {
     loadArticles = () => {
       API.scrape()
         .then(res => {
-          var $ = cheerio.load(res.data);
-          var titleObjArr = [];
-          $(".css-ye6x8s").each(function(){
-            var titleObj = {
-              title:$(this).children().children().children().children("h2").text(),
-              link:$(this).children().children().children("a").attr("href")
-            }
-            titleObjArr.push(titleObj);
-          })
-          this.setState({ titleArr: titleObjArr });
-          console.log(this.state)
+          this.setState({ titleArr: res.data });
         })
         .catch(err => console.log(err));
     };
@@ -38,7 +28,7 @@ class Articles extends Component {
             <br/>
             <br/>
             <div>
-                <h1>Articles</h1>
+                <h1>Learn About Finance with up to date Articles</h1>
                 {this.state.titleArr.map((item) => <a href={"https://www.nytimes.com/" + item.link}><h2>{item.title}</h2></a>)}
             
             </div>
