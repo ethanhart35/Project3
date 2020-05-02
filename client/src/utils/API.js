@@ -28,7 +28,7 @@ export default {
   },
 
 scrape: function(){
- return axios.get("https://www.nytimes.com/topic/subject/finances")
+ return axios.get("/api/scrape");
 }
 
 };
