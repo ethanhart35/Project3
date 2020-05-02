@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "./components/Nav";
 import Graph from "./components/Graph";
+import Form from "./components/Form;"
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from './pages/Articles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
