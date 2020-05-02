@@ -8,6 +8,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 function App() {
+  // recieveToken(){
+    
+  // }
+  // Auth(){
+
+  // }
   return (
     <div>
       <Nav /> 

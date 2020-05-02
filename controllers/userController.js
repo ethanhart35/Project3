@@ -57,6 +57,13 @@ module.exports = {
             failureRedirect: '/login',
             failureFlash: true
         })(req, res, next)
+
+        // passport.authenticate('local',(req, res) => {
+        //     console.log(req)
+        // } )(req,res,next)
+
+        // console.log(req)
+        // => res.json(.user)
         // res.json({msg: "you have logged in"})
         
     },

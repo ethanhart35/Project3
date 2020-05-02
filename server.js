@@ -3,6 +3,7 @@ const session = require('express-session');
 const mongojs = require("mongojs");
 const mongoose = require("mongoose");
 const passport = require('passport')
+const indexRoutes = require("./routes/index")
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
 const axios = require("axios");
@@ -44,7 +45,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Route links for login/register auth and stock data
+// Route links
+app.use(indexRoutes)
 app.use("/auth", authRoutes);
 app.use("/stocks", stockRoutes);
 
