@@ -28,9 +28,7 @@ export default {
   },
 
 scrape: function(){
-  // return axios.get("https://www.nytimes.com/topic/subject/finances")
-  return axios.get("https://www.google.com")
+ return axios.get("/api/scrape");
 }
-  
 
 };
