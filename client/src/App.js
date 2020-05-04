@@ -8,27 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 function App() {
-  // recieveToken(){
-    
-  // }
-  // Auth(){
 
-  // }
-  // ensureAuthenticated(req, res, next) {
-  //   if (req.isAuthenticated()) {
-  //       console.log('authentication err')
-  //     return next();
-  //   }
-  //   res.redirect('/login');
-  // };
-  // forwardAuthenticated(req, res, next) {
-  //   if (!req.isAuthenticated()) {
-  //     console.log('authentication err')
-
-  //     return next();
-  //   }
-  //   res.redirect('/login');      
-  // }
   return (
     <div>
       <Nav /> 

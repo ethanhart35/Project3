@@ -1,19 +1,63 @@
 import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Graph from '../../components/Graph'
 import API from '../../utils/API';
+
+// import ReactDOM from 'react-dom';
+// import { Carousel } from 'react-responsive-carousel';
 
 
 class Market extends Component {
 
+    state = {
+        stock: [
+            {
+                name: "this test",
+                quantity: 100,
+                ticker: "HSS"
+            }, {
+                name: "this test2",
+                quantity: 50,
+                ticker: "sHS"
+            }, {
+                name: "this test3",
+                quantity: 10,
+                ticker: "TTS"
+            }
+        ]
+    }
+
+    componentDidMount() {
+        // loadStocks()
+    }
+
+    loadStocks() {
+
+    }
+
     buyStocks(e, name, quantity) {
         e.preventDefault()
 
-        API.buyStock({ name , quantity })
+        API.buyStock({ name, quantity })
     }
+
+
 
     render() {
         return (
             <div>
+                <div className="row">
+                    {
+                        this.state.stock.map((stock, i) => {
+                            return <div className="col p-3 m-3 border">
+                                <div key={i}>
+                                    <h2>{stock.ticker}</h2>
+                                    <p className="text-muted">{stock.name}</p>
+                                </div>
+                            </div>
+                        })
+                    }
+                </div>
                 <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e => this.buyStocks(e, this.refs.name.value, this.refs.quantity.value)}>
                         <h2>Buy Stocks</h2>
