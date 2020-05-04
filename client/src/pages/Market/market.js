@@ -43,8 +43,8 @@ class Market extends Component {
         return (
             <div>
                 <div className="row">
-                    {
-                        this.state.user.stocks.map((stock, i) => (
+                    {   // user specific 
+                        this.state.user.stockData.map((stock, i) => (
                             <div className="col p-3 m-3 border">
                                 <div key={i}>
                                     <h2>{stock.ticker}</h2>
@@ -53,7 +53,7 @@ class Market extends Component {
                             </div>
                         ))
                     }
-                    {
+                    {   // static stock data
                         this.state.staticStock.map((stock, i) => (
                             <div className="col p-3 m-3 border">
                                 <div key={i}>

@@ -4,17 +4,15 @@ import API from '../../utils/API';
 class Login extends Component {
 
     state = {
-        msg: [],
-        user: []
+        msg: []
     }
 
     formSubmit = (e, email, password) => {
         e.preventDefault()
         API.loginUser({ email, password })
             .then(res => {
-                this.setState({ msg: [res.data[0]], user: res.data[1] })
-                console.log(this.state.user)
-                
+                this.setState({ msg: [res.data[0]]})
+                this.props.callback(res.data[1])
             }
             )
     }

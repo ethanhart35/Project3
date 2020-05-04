@@ -12,16 +12,16 @@ class App extends Component {
     user: {
       name: "test",
       password: "nothanks",
-      stocks: [
+      stockData: [
         {
           name: "appdatatest",
           quantity: "25",
           ticker: "PSM"
-        },        {
+        }, {
           name: "appdatatest",
           quantity: "25",
           ticker: "PSM"
-        },        {
+        }, {
           name: "appdatatest",
           quantity: "25",
           ticker: "PSM"
@@ -30,7 +30,12 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
+  userCallback(data) {
+    this.setState({ user: data.user })
+    console.log(this.state)
+  }
+
+  componentDidMount() {
 
   }
 
@@ -43,7 +48,7 @@ class App extends Component {
             <Route exact path='/' component={HomePage} />
             <Route exact path='/articles' component={Articles} />
             <Route exact path='/market' render={(props) => <Market user={this.state.user} />} />
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/login' render={(props) => <Login callback={this.userCallback.bind(this)} />} />
             <Route exact path='/register' component={Register} />
           </div>
         </Router>
