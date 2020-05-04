@@ -19,7 +19,7 @@ export default {
     return axios.post("/auth/login", data)
   },
   logoutUser: function(){
-    return axios.get("/auth/logout")
+    return axios.post("/auth/logout")
   },
 
   searchStock: function (time, company) {

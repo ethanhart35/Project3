@@ -14,6 +14,21 @@ function App() {
   // Auth(){
 
   // }
+  // ensureAuthenticated(req, res, next) {
+  //   if (req.isAuthenticated()) {
+  //       console.log('authentication err')
+  //     return next();
+  //   }
+  //   res.redirect('/login');
+  // };
+  // forwardAuthenticated(req, res, next) {
+  //   if (!req.isAuthenticated()) {
+  //     console.log('authentication err')
+
+  //     return next();
+  //   }
+  //   res.redirect('/login');      
+  // }
   return (
     <div>
       <Nav /> 

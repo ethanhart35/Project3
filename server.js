@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Route links
-app.use(indexRoutes)
+// app.use("/",indexRoutes)
 app.use("/auth", authRoutes);
 app.use("/stocks", stockRoutes);
 

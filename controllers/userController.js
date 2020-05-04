@@ -2,6 +2,7 @@ const User = require("../models/user")
 const bcrypt = require("bcryptjs")
 const passport = require('passport');
 
+
 module.exports = {
 
     register: function (req, res) {
@@ -51,25 +52,22 @@ module.exports = {
 
         }
     },
-    login: function (req, res, next) {   
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true
-        })(req, res, next)
-
-        // passport.authenticate('local',(req, res) => {
-        //     console.log(req)
-        // } )(req,res,next)
-
-        // console.log(req)
-        // => res.json(.user)
-        // res.json({msg: "you have logged in"})
-        
+    login: function (req, res, next) {
+        passport.authenticate('local',
+            (err, user, info) => {
+                if (err) return next(err);
+                if (!user) return res.json([{ msg: "no user" }]);
+                req.logIn(user, function (err) {
+                    if (err) { return next(err); }
+                    console.log(user)
+                    return res.json([{ msg: "login sucessful" },{ user: user }])
+                    // return res.redirect('/auth/login/callback' + user.username);
+                });
+            })(req, res, next);
     },
     logout: function (req, res) {
         req.logout();
-        req.flash('success_msg', 'You are logged out');
-        res.redirect('/login');
+        // req.flash('success_msg', 'You are logged out');
+        // res.redirect('/login');
     },
 };

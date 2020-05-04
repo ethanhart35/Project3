@@ -1,8 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
-const mongoose = require("mongoose")
-
 const User = require('../models/user');
 
 // this is the custom passport config file to sort information and establish login/out
@@ -30,14 +28,15 @@ module.exports = function (passport) {
   );
 
   passport.serializeUser(function (user, done) {
-    console.log('user serialized')
-    // console.log(user.id)
+    console.log('user serialized ID: \|/')
+    console.log(user.id)
     done(null, user.id);
   });
 
   passport.deserializeUser(function (id, done) {
     User.findById(id, function (err, user) {
-      console.log("deserializeUser")
+      console.log("deserializeUser ID: \|/")
+      console.log(id)
       done(err, user);
     });
   });
