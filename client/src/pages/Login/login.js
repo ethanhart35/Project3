@@ -11,12 +11,12 @@ class Login extends Component {
     formSubmit = (e, email, password) => {
         e.preventDefault()
         API.loginUser({ email, password })
-            .then(res => 
-{
-                this.setState({ msg: [res.data[0]], user: res.data[1]})
+            .then(res => {
+                this.setState({ msg: [res.data[0]], user: res.data[1] })
                 console.log(this.state.user)
-}
-                )
+                
+            }
+            )
     }
 
     render() {

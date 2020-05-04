@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Graph from '../../components/Graph'
 import API from '../../utils/API';
-
-// import ReactDOM from 'react-dom';
-// import { Carousel } from 'react-responsive-carousel';
-
 
 class Market extends Component {
 
     state = {
-        stock: [
+        staticStock: [
             {
                 name: "this test",
                 quantity: 100,
@@ -24,20 +19,21 @@ class Market extends Component {
                 quantity: 10,
                 ticker: "TTS"
             }
-        ]
+        ],
+        user: this.props.user
     }
 
     componentDidMount() {
-        // loadStocks()
+        this.loadStocks()
     }
 
     loadStocks() {
-
+        console.log("tick")
+        console.log(this.state.user)
     }
 
     buyStocks(e, name, quantity) {
         e.preventDefault()
-
         API.buyStock({ name, quantity })
     }
 
@@ -48,14 +44,24 @@ class Market extends Component {
             <div>
                 <div className="row">
                     {
-                        this.state.stock.map((stock, i) => {
-                            return <div className="col p-3 m-3 border">
+                        this.state.user.stocks.map((stock, i) => (
+                            <div className="col p-3 m-3 border">
                                 <div key={i}>
                                     <h2>{stock.ticker}</h2>
                                     <p className="text-muted">{stock.name}</p>
                                 </div>
                             </div>
-                        })
+                        ))
+                    }
+                    {
+                        this.state.staticStock.map((stock, i) => (
+                            <div className="col p-3 m-3 border">
+                                <div key={i}>
+                                    <h2>{stock.ticker}</h2>
+                                    <p className="text-muted">{stock.name}</p>
+                                </div>
+                            </div>
+                        ))
                     }
                 </div>
                 <div>
