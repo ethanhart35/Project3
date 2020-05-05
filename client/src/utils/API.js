@@ -7,12 +7,19 @@ export default {
   getStock: function (id) {
     return axios.get("/stocks/"+id)
   },
+
+  buyStock: function (data) {
+    return axios.post("/stocks", data)
+  },
   
   registerUser: function (data) {
     return axios.post("/auth/register", data)
   },
   loginUser: function (data) {
     return axios.post("/auth/login", data)
+  },
+  logoutUser: function(){
+    return axios.post("/auth/logout")
   },
 
   searchStock: function (time, company) {
@@ -26,4 +33,8 @@ scrape: function(){
  return axios.get("/api/scrape");
 }
 
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 70a08d67d77cb6601b9493bbca3fea1ba412c663

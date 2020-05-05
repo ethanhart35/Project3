@@ -3,33 +3,41 @@ import API from '../../utils/API';
 
 class Login extends Component {
 
-    // formSubmit(e){
-    //     e.preventDefault()
+    state = {
+        msg: []
+    }
 
-    //     let loginData = {
-    //         email: this.refs.email.value,
-    //         password: this.refs.password.value,
-    //     } 
-
-    //     console.log(loginData)
-    //     API.loginUser(loginData)
-    // }
     formSubmit = (e, email, password) => {
         e.preventDefault()
-        console.log(email+password)
-        API.loginUser({email,password})
+        API.loginUser({ email, password })
+            .then(res => {
+                this.setState({ msg: [res.data[0]]})
+                this.props.callback(res.data[1])
+            }
+            )
     }
 
     render() {
         return (
             <div className="container">
+
+                {this.state.msg.map((msg, i) =>
+                    <div key={i} className="row">
+                        <div className="col">
+                            <div className="alert alert-dark alert-dismissible" role="alert">
+                                <h4 className="text-center">{msg.msg}</h4>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">Login</h5>
 
-                                <form onSubmit={e => this.formSubmit(e,this.refs.email.value,this.refs.password.value)}>
+                                <form onSubmit={e => this.formSubmit(e, this.refs.email.value, this.refs.password.value)}>
 
                                     <div className="form-group">
                                         <label for="exampleInputEmail1">Email address</label>

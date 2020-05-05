@@ -1,5 +1,6 @@
 import React from "react";
 import "./Nav.css";
+import API from "../utils/API";
 
 const Nav = (props) => (
     <nav className="navbar navbar-light">
@@ -13,7 +14,10 @@ const Nav = (props) => (
                     <a className="nav-link btn btn-primary py-0" href="/market">Market</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link btn btn-primary py-0" href="/login">Sign In</a>
+                    <a className="nav-link btn btn-primary py-0" href="/login">Log In</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link btn btn-primary py-0" onClick={API.logoutUser}>Log out</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link btn btn-primary py-0" href="/register">Register</a>

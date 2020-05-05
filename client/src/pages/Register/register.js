@@ -3,20 +3,38 @@ import API from "../../utils/API"
 
 class Register extends Component {
 
+    state = {
+        msg: []
+    };
+
     formSubmit(e, name, email, password1, password2) {
         e.preventDefault()
-        API.registerUser({name,email,password1,password2})
+        const currentComponent = this
+
+        API.registerUser({ name, email, password1, password2 })
+            .then(res => currentComponent.setState({ msg: res.data })
+            )
     }
 
     render() {
         return (
             <div className="container">
+
+                {this.state.msg.map((msg, i) =>
+                    <div key={i} className="row">
+                        <div className="col">
+                            <div className="alert alert-dark alert-dismissible" role="alert">
+                                <h4 className="text-center">{msg.msg}</h4>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">Create an Account</h5>
-                                <form onSubmit={e => this.formSubmit( e,
+                                <form onSubmit={e => this.formSubmit(e,
                                     this.refs.Name.value,
                                     this.refs.Email.value,
                                     this.refs.Password1.value,

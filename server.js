@@ -1,20 +1,31 @@
 const express = require("express");
+<<<<<<< HEAD
+const session = require('express-session');
+const mongojs = require("mongojs");
+=======
 const request = require("request");
 const cheerio = require("cheerio");
 const axios = require("axios");
 var mongojs = require("mongojs");
+>>>>>>> master
 const mongoose = require("mongoose");
 const passport = require('passport')
+const indexRoutes = require("./routes/index")
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
+<<<<<<< HEAD
+const axios = require("axios");
+const cheerio = require("cheerio");
+=======
 var axios = require("axios");
 var cheerio = require("cheerio");
 
+>>>>>>> master
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Passport Config
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 // Database configuration
 var databaseUrl = "scraper";
@@ -25,7 +36,7 @@ db.on("error", function (error) {
   console.log("Database Error:", error);
 });
 
-// Define middleware here
+// Express
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -56,7 +67,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Route links for login/register auth and stock data
+// Route links
+// app.use("/",indexRoutes)
 app.use("/auth", authRoutes);
 app.use("/stocks", stockRoutes);
 

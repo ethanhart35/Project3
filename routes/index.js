@@ -1,15 +1,20 @@
-// const path = require("path");
 // const router = require("express").Router();
-// const authRoutes = require("./authRoutes");
-// const stockRoutes = require("./stockRoutes")
+// // const userController = require("../controllers/userController");
+// const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
-// router.use("/auth", authRoutes);
-// router.use("/stocks", stockRoutes);
+// // get routes with forward auth routes
 
-// // If no API routes are hit, send the React app
-// router.use(function(req, res) {
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-// });
+// // Login Page
+// router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+
+// // Register Page
+// router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+
+// // Market Page
+// router.get('/articles', forwardAuthenticated, (req, res) => res.render('login'));
+
+// // Article Page
+// router.get('/market', ensureAuthenticated, (req, res) => res.render('register'));
+
 
 // module.exports = router;
-
