@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
-
+const axios = require("axios")
+const cheerio = require("cheerio")
 // Matches with "/api/books"
 router.route("/")
   .get(booksController.findAll)
@@ -12,5 +13,5 @@ router
   .get(booksController.findById)
   .put(booksController.update)
   .delete(booksController.remove);
-
+  
 module.exports = router;
