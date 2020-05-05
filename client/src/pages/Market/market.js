@@ -29,6 +29,7 @@ class Market extends Component {
 
     loadStocks() {
         console.log("tick")
+        console.log(this.props)
         console.log(this.state.user)
     }
 
@@ -43,7 +44,7 @@ class Market extends Component {
         return (
             <div>
                 <div className="row">
-                    {   // user specific 
+                    {/* {   // user specific 
                         this.state.user.stockData.map((stock, i) => (
                             <div className="col p-3 m-3 border">
                                 <div key={i}>
@@ -62,7 +63,7 @@ class Market extends Component {
                                 </div>
                             </div>
                         ))
-                    }
+                    } */}
                 </div>
                 <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e => this.buyStocks(e, this.refs.name.value, this.refs.quantity.value)}>
