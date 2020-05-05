@@ -8,8 +8,6 @@ const passport = require('passport')
 const indexRoutes = require("./routes/index")
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
-var axios = require("axios");
-var cheerio = require("cheerio");
 
 const app = express();
 const PORT = process.env.PORT || 3001;

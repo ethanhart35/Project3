@@ -5,20 +5,20 @@ export default {
     return axios.get("/stocks")
   },
   getStock: function (id) {
-    return axios.get("/stocks/"+id)
+    return axios.get("/stocks/" + id)
   },
 
   buyStock: function (data) {
     return axios.post("/stocks", data)
   },
-  
+
   registerUser: function (data) {
     return axios.post("/auth/register", data)
   },
   loginUser: function (data) {
     return axios.post("/auth/login", data)
   },
-  logoutUser: function(){
+  logoutUser: function () {
     return axios.post("/auth/logout")
   },
 
@@ -29,12 +29,7 @@ export default {
     return axios.get(stockDataString)
   },
 
-scrape: function(){
- return axios.get("/api/scrape");
-}
-
-<<<<<<< HEAD
+  scrape: function () {
+    return axios.get("/api/scrape");
+  }
 };
-=======
-};
->>>>>>> 70a08d67d77cb6601b9493bbca3fea1ba412c663
