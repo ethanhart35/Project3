@@ -1,13 +1,26 @@
 const express = require("express");
+<<<<<<< HEAD
 const session = require('express-session');
 const mongojs = require("mongojs");
+=======
+const request = require("request");
+const cheerio = require("cheerio");
+const axios = require("axios");
+var mongojs = require("mongojs");
+>>>>>>> master
 const mongoose = require("mongoose");
 const passport = require('passport')
 const indexRoutes = require("./routes/index")
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
+<<<<<<< HEAD
 const axios = require("axios");
 const cheerio = require("cheerio");
+=======
+var axios = require("axios");
+var cheerio = require("cheerio");
+
+>>>>>>> master
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -19,7 +32,7 @@ var databaseUrl = "scraper";
 var collections = ["scrapedData"];
 
 var db = mongojs(databaseUrl, collections);
-db.on("error", function(error) {
+db.on("error", function (error) {
   console.log("Database Error:", error);
 });
 
@@ -27,18 +40,27 @@ db.on("error", function(error) {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Express/passport user cookie/session
-app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-  })
-);
 
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+//scrape nyt for articles
+app.get('/api/scrape/', (req, res) => {
+  
+  axios.get("https://www.nytimes.com/topic/subject/finances").then(function (result) {
+    var $ = cheerio.load(result.data);
+    var titleObjArr = [];
+    $(".css-ye6x8s").each(function () {
+      var titleObj = {
+        title: $(this).children().children().children().children("h2").text(),
+        link: $(this).children().children().children("a").attr("href")
+      }
+      titleObjArr.push(titleObj);
+    });
+    res.json(titleObjArr);
+  });
+});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
