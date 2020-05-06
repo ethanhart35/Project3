@@ -34,24 +34,25 @@ class Market extends Component {
     state = {
         staticStock: [
             {
-                name: "this test",
+                name: "Corporation",
                 quantity: 100,
                 ticker: "HSS"
             }, {
-                name: "this test2",
+                name: "Local buisness",
                 quantity: 50,
                 ticker: "sHS"
             }, {
-                name: "this test3",
+                name: "Lemonade stand",
                 quantity: 10,
                 ticker: "TTS"
             }
         ],
-        user: {}
+        user: this.props.user
     }
 
     componentDidMount() {
-        this.loadStocks(this.props)
+        console.log(this.state)
+        // this.loadStocks(this.props)
     }
 
     loadStocks(data) {
@@ -70,23 +71,19 @@ class Market extends Component {
         return (
             <div>
                 <Carousel responsive={responsive}>
-                    <div>Item 1</div>
-                    <div>Item 2</div>
-                    <div>Item 3</div>
-                    <div>Item 4</div>
-                    {/* {   // user specific 
+                    {   // user specific 
                         this.state.user.stockData.map((stock, i) => {
-                            if (!this.state.user.stockData === undefined) {
-                                return 
-                            }
-                            <div className="col p-3 m-3 border">
-                                    <div key={i}>
-                                        <h2>{stock.ticker}</h2>
-                                        <p className="text-muted">{stock.name}</p>
-                                    </div>
+                            // if (!this.state.user.stockData === undefined) {
+                            //     return 
+                            // }
+                            return <div className="col p-2 m-3 border">
+                                <div key={i}>
+                                    <h2>{stock.ticker}</h2>
+                                    <p className="text-muted">{stock.name}</p>
                                 </div>
+                            </div>
                         })
-                        } */}
+                    }
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => (
                             <div className="col p-2 m-3 border">
@@ -97,6 +94,10 @@ class Market extends Component {
                             </div>
                         ))
                     }
+                    <div>Item 1</div>
+                    <div>Item 2</div>
+                    <div>Item 3</div>
+                    <div>Item 4</div>
                 </Carousel>;
                 <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e => this.buyStocks(e, this.refs.name.value, this.refs.quantity.value)}>

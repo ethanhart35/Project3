@@ -12,36 +12,37 @@ import Register from './pages/Register';
 class App extends Component {
   state = {
     user: {
-      // name: "test",
-      // password: "nothanks",
-      // stockData: [
-      //   {
-      //     name: "appdatatest",
-      //     quantity: "25",
-      //     ticker: "PSM"
-      //   }, {
-      //     name: "appdatatest",
-      //     quantity: "25",
-      //     ticker: "PSM"
-      //   }, {
-      //     name: "appdatatest",
-      //     quantity: "25",
-      //     ticker: "PSM"
-      //   },
-      // ]
+      name: "test",
+      password: "nothanks",
+      stockData: [
+        {
+          name: "appdatatest1",
+          quantity: "25",
+          ticker: "PSM"
+        }, {
+          name: "appdatatest2",
+          quantity: "25",
+          ticker: "RPM"
+        }, {
+          name: "appdatatest3",
+          quantity: "25",
+          ticker: "PLM"
+        },
+      ]
     }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.user.name !== prevState.user.name) {
-      this.setState({user: "max"})
+      this.setState({user: this.state})
+      console.log(this.state)
     }
   }
 
   userCallback(data) {
-    console.log(data)
-    this.setState({ user: data.user })
-    console.log(this.state.user)
+    // console.log(data)
+    // this.setState({ user: data.user })
+    // console.log(this.state.user)
   }
 
   componentDidMount() {
