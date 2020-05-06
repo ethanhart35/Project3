@@ -27,13 +27,13 @@ class Market extends Component {
         user: {}
     }
 
-    componentWillMount() {
-        this.loadStocks()
+    componentDidMount() {
+        this.loadStocks(this.props)
     }
 
-    loadStocks() {
-        console.log(this.props.user)
-        this.setState({ user: this.props })
+    loadStocks(data) {
+        console.log(data)
+        this.setState({ user: data })
         console.log(this.state)
     }
 
