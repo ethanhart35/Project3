@@ -3,6 +3,10 @@ import Graph from '../../components/Graph'
 import API from '../../utils/API';
 
 class Market extends Component {
+    constructor(props) {
+        super(props)
+
+    }
 
     state = {
         staticStock: [
@@ -20,17 +24,17 @@ class Market extends Component {
                 ticker: "TTS"
             }
         ],
-        user: this.props.user
+        user: {}
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.loadStocks()
     }
 
     loadStocks() {
-        console.log("tick")
-        console.log(this.props)
-        console.log(this.state.user)
+        console.log(this.props.user)
+        this.setState({ user: this.props })
+        console.log(this.state)
     }
 
     buyStocks(e, name, quantity) {
@@ -39,21 +43,23 @@ class Market extends Component {
     }
 
 
-
     render() {
         return (
             <div>
                 <div className="row">
                     {/* {   // user specific 
-                        this.state.user.stockData.map((stock, i) => (
+                        this.state.user.stockData.map((stock, i) => {
+                            if (!this.state.user.stockData === undefined) {
+                                return 
+                            }
                             <div className="col p-3 m-3 border">
-                                <div key={i}>
-                                    <h2>{stock.ticker}</h2>
-                                    <p className="text-muted">{stock.name}</p>
+                                    <div key={i}>
+                                        <h2>{stock.ticker}</h2>
+                                        <p className="text-muted">{stock.name}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))
-                    }
+                        })
+                    } */}
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => (
                             <div className="col p-3 m-3 border">
@@ -63,7 +69,7 @@ class Market extends Component {
                                 </div>
                             </div>
                         ))
-                    } */}
+                    }
                 </div>
                 <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e => this.buyStocks(e, this.refs.name.value, this.refs.quantity.value)}>
