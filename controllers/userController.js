@@ -58,8 +58,7 @@ module.exports = {
                 if (err) return next(err);
                 if (!user) return res.json([{ msg: "no user" }]);
                 req.logIn(user, function (err) {
-                    if (err) { return next(err); }
-                    console.log(user)
+                    if (err) return next(err);
                     return res.json([{ msg: "login sucessful" },{ user: user }])
                     // return res.redirect('/auth/login/callback' + user.username);
                 });
