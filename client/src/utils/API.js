@@ -1,11 +1,14 @@
 import axios from "axios";
 var cheerio = require("cheerio");
+
 export default {
-  getStocks: function () {
-    return axios.get("/stocks")
+  getStocks: function (ticker) {
+
   },
-  getStock: function (id) {
-    return axios.get("/stocks/" + id)
+  getStock: function (ticker) {
+    var key = "Y630EXU2OC7ZDZ1G"
+    var dataString = "https://www.alphavantage.co/query?function=Time_Series_Daily&symbol=" + ticker + "&apikey=" + key
+    return axios.get(dataString)
   },
 
   buyStock: function (data) {
@@ -22,12 +25,13 @@ export default {
     return axios.post("/auth/logout")
   },
 
-  searchStock: function (time, company) {
+  graphStockSearch: function (time, ticker) {
     var key = "Y630EXU2OC7ZDZ1G"
-    var stockDataString = "https://www.alphavantage.co/query?function=" + time + "&symbol=" + company + "&apikey=" + key
+    var stockDataString = "https://www.alphavantage.co/query?function=" + time + "&symbol=" + ticker + "&apikey=" + key
 
     return axios.get(stockDataString)
   },
+
 
   scrape: function () {
     return axios.get("/api/scrape");

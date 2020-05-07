@@ -41,7 +41,7 @@ class Market extends Component {
             {
                 name: "Corporation",
                 quantity: 100,
-                ticker: "HSS"
+                ticker: "IBM"
             }, {
                 name: "Local buisness",
                 quantity: 50,
@@ -93,6 +93,9 @@ class Market extends Component {
     loadStock(e, data) {
         e.preventDefault()
         console.log(data)
+        API.getStock(data).then(res => {
+            console.log(res)
+        })
     }
 
     buyStocks(e, name, quantity) {
@@ -137,7 +140,7 @@ class Market extends Component {
                     } */}
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => (
-                            <a onClick={e => this.loadStock(e, stock.name)}>
+                            <a onClick={e => this.loadStock(e, stock.ticker)}>
                                 <div className="col p-2 m-3 border">
                                     <div key={i}>
                                         <h2>{stock.ticker}</h2>

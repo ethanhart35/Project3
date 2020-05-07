@@ -66,10 +66,13 @@ class Graph extends Component {
         }
 
         // search API using name and a time interval for options
-        API.searchStock(this.refs.time.value, this.refs.name.value)
+        API.graphStockSearch(this.refs.time.value, this.refs.name.value)
             .then(function (APIdata) {
                 // all the actual numbers "meta data" also has useful information to be used (eventually)
                 let stockData = APIdata.data[dataInterval]
+                console.log(APIdata)
+                console.log(APIdata.data[0])
+                console.log(APIdata.data[1])
 
                 let label = [];
                 let open = [];
