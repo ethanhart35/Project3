@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   userCallback(data) {
-    // console.log(data)
+    console.log(data)
     // this.setState({ user: data.user })
     // console.log(this.state.user)
   }

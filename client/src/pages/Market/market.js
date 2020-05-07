@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Graph from '../../components/Graph'
 import API from '../../utils/API';
 
+// both are needed
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -9,19 +10,23 @@ const responsive = {
     superLargeDesktop: {
         // the naming can be any, depends on you.
         breakpoint: { max: 4000, min: 3000 },
-        items: 5
+        items: 8,
+        slidesToSlide: 3
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 3
+        items: 6,
+        slidesToSlide: 3
     },
     tablet: {
         breakpoint: { max: 1024, min: 464 },
-        items: 2
+        items: 4,
+        slidesToSlide: 2
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1
+        items: 2,
+        slidesToSlide: 2
     }
 };
 
@@ -34,6 +39,30 @@ class Market extends Component {
     state = {
         staticStock: [
             {
+                name: "Corporation",
+                quantity: 100,
+                ticker: "HSS"
+            }, {
+                name: "Local buisness",
+                quantity: 50,
+                ticker: "sHS"
+            }, {
+                name: "Lemonade stand",
+                quantity: 10,
+                ticker: "TTS"
+            }, {
+                name: "Corporation",
+                quantity: 100,
+                ticker: "HSS"
+            }, {
+                name: "Local buisness",
+                quantity: 50,
+                ticker: "sHS"
+            }, {
+                name: "Lemonade stand",
+                quantity: 10,
+                ticker: "TTS"
+            }, {
                 name: "Corporation",
                 quantity: 100,
                 ticker: "HSS"
@@ -61,6 +90,11 @@ class Market extends Component {
         console.log(this.state)
     }
 
+    loadStock(e, data) {
+        e.preventDefault()
+        console.log(data)
+    }
+
     buyStocks(e, name, quantity) {
         e.preventDefault()
         API.buyStock({ name, quantity })
@@ -70,8 +104,24 @@ class Market extends Component {
     render() {
         return (
             <div>
-                <Carousel responsive={responsive}>
-                    {   // user specific 
+                <Carousel responsive={responsive}
+                    swipeable={false}
+                    draggable={false}
+                    // showDots={true}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                    // autoPlaySpeed={1000}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="carousel-container"
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    deviceType={this.props.deviceType}
+                    dotListClass="custom-dot-list-style"
+                    itemClass="carousel-item-padding-40-px"
+                >
+                    {/* {   // user specific 
                         this.state.user.stockData.map((stock, i) => {
                             // if (!this.state.user.stockData === undefined) {
                             //     return 
@@ -80,18 +130,21 @@ class Market extends Component {
                                 <div key={i}>
                                     <h2>{stock.ticker}</h2>
                                     <p className="text-muted">{stock.name}</p>
+                                    <p cl></p>
                                 </div>
                             </div>
                         })
-                    }
+                    } */}
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => (
-                            <div className="col p-2 m-3 border">
-                                <div key={i}>
-                                    <h2>{stock.ticker}</h2>
-                                    <p className="text-muted">{stock.name}</p>
+                            <a onClick={e => this.loadStock(e, stock.name)}>
+                                <div className="col p-2 m-3 border">
+                                    <div key={i}>
+                                        <h2>{stock.ticker}</h2>
+                                        <p className="text-muted">{stock.name}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         ))
                     }
                     <div>Item 1</div>

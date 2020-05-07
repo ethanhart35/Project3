@@ -138,7 +138,7 @@ class Graph extends Component {
             })
 
     }
-    
+
     render() {
         return (
             <div>
@@ -148,7 +148,7 @@ class Graph extends Component {
                         <label for="name">Stock Label</label>
                         <input type='text' ref="name" />
                     </div>
-                    <div class="form-group p-2">
+                    <div className="form-group p-2">
                         <label for="time">Choose a timeframe:</label>
                         <select ref="time">
                             <option value="Time_Series_Daily">Daily</option>
@@ -156,7 +156,7 @@ class Graph extends Component {
                             <option value="Time_Series_Monthly">Monthly</option>
                         </select>
                     </div>
-                    <div class="form-group p-2">
+                    <div className="form-group p-2">
                         <label for='volume'>Display</label>
                         <select ref="volume">
                             <option value="Volume">Volume</option>
