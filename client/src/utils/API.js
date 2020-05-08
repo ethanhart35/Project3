@@ -38,10 +38,10 @@ export default {
     
   },
   buyStock: function (data) {
-    return axios.post("/stocks", data)
+    return axios.post("/stocks/buy", data)
   },
   sellStock: function (data) {
-    return axios.post("/stocks", data)
+    return axios.post("/stocks/sell", data)
   },
 
 

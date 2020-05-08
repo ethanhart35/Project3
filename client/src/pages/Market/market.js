@@ -80,6 +80,7 @@ class Market extends Component {
     }
 
     // to be used in the carosell to search all the tickers and give back percentage changes
+    // cant work becouse limited API calls
     loadStocks(data) {
         console.log(data)
         this.setState({ user: data })
@@ -92,6 +93,10 @@ class Market extends Component {
         if (ticker === "") { return false }
 
         API.graphStockSearch(ticker, time).then(res => {
+            if (res.data.Note !== undefined || res.data["Error Message"] !== undefined) {
+                console.log("Invalid or over API key call limit")
+                return false
+            }
             // the API timeInterval name and the JSON data recovery timeInterval name are different and need to be
             // changed in order so variables can be grabbed later
             let dataInterval = []
@@ -121,7 +126,7 @@ class Market extends Component {
     // api search current price, calculate then api.sell to change user data acordingly
     sellStock(e, name, quantity) {
         e.preventDefault()
-
+        API.sellStock({ name, quantity })
     }
 
     render() {
@@ -173,7 +178,8 @@ class Market extends Component {
                 </Carousel>
 
                 <div>
-                    <form className="form-inline border p-2 m-2" onSubmit={e => this.buyStock(e, this.refs.name.value, this.refs.quantity.value)}>
+                    <form className="form-inline border p-2 m-2" onSubmit={e =>
+                        this.buyStock(e, this.refs.name.value, this.refs.quantity.value)}>
                         <h2>Buy Stocks</h2>
                         <div className="form-group">
                             <label>Stock Name</label>
@@ -202,6 +208,7 @@ class Market extends Component {
                     </form>
                 </div>
 
+                {/* https://www.alphavantage.co/documentation/  SEARCH ENDPOINTS API call could help autofill the .refs.name      set it on a ticker so the call goes off as second or 2 after they stop typing */}
                 <form className="form-inline" onSubmit={e => this.loadStock(e, this.refs.ticker.value, this.refs.time.value)}>
                     <div className="form-group p-2">
                         <label for="ticker">Stock Label</label>
