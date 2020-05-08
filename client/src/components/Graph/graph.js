@@ -36,6 +36,23 @@ class Graph extends Component {
                         data: [1, 2, 3, 4, 5]
                     }
                 ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            max: 20000000,
+                            min: 0
+                        }
+                    }]
+                }
             }
         }
     }
@@ -46,7 +63,7 @@ class Graph extends Component {
         // this.setstate cant use 'this' whist in the API.search callback, this is the fix
         let currentComponent = this
 
-        if(this.refs.name.value===""){
+        if (this.refs.name.value === "") {
             return false;
         }
 
@@ -70,9 +87,6 @@ class Graph extends Component {
             .then(function (APIdata) {
                 // all the actual numbers "meta data" also has useful information to be used (eventually)
                 let stockData = APIdata.data[dataInterval]
-                console.log(APIdata)
-                console.log(APIdata.data[0])
-                console.log(APIdata.data[1])
 
                 let label = [];
                 let open = [];
@@ -88,26 +102,31 @@ class Graph extends Component {
                             label: 'open',
                             fill: false,
                             borderColor: 'rgba(148,0,211,1)',
+                            yAxisID: 'A',
                             data: open
                         }, {
                             label: 'high',
                             fill: false,
                             borderColor: 'rgba(0,0,255,1)',
+                            yAxisID: 'A',
                             data: high
                         }, {
                             label: 'low',
                             fill: false,
                             borderColor: 'rgba(255,255,0,1)',
+                            yAxisID: 'A',
                             data: low
                         }, {
                             label: 'close',
                             fill: false,
                             borderColor: 'rgba(255,0,0,1)',
+                            yAxisID: 'A',
                             data: close
                         }, {
                             label: 'volume',
                             fill: false,
                             borderColor: 'rgba(0,192,0,1)',
+                            yAxisID: 'B',
                             data: volume
                         }
                     ]
@@ -116,13 +135,14 @@ class Graph extends Component {
                 Object.entries(stockData).map((entry) => {
                     label.push(entry[0]);
 
-                    if(currentComponent.refs.volume.value === "Volume"){
+                    if (currentComponent.refs.volume.value === "Volume") {
                         volume.push(entry[1]["5. volume"])
-                    } else {
                         open.push(entry[1]["1. open"]);
                         high.push(entry[1]["2. high"]);
                         low.push(entry[1]["3. low"]);
                         close.push(entry[1]["4. close"]);
+                    } else {
+
                     }
                 }
                 )
@@ -145,7 +165,6 @@ class Graph extends Component {
     render() {
         return (
             <div>
-                <br></br><br></br>
                 <form className="form-inline" onSubmit={this.generateStock.bind(this)}>
                     <div class="form-group p-2">
                         <label for="name">Stock Label</label>
@@ -171,6 +190,7 @@ class Graph extends Component {
                 </form>
                 <Line
                     data={this.state.graphData}
+                    options={this.state.options}
                 />
             </div>
         )
