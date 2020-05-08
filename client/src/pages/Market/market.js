@@ -8,7 +8,6 @@ import 'react-multi-carousel/lib/styles.css';
 
 const responsive = {
     superLargeDesktop: {
-        // the naming can be any, depends on you.
         breakpoint: { max: 4000, min: 3000 },
         items: 8,
         slidesToSlide: 3
@@ -37,6 +36,7 @@ class Market extends Component {
     }
 
     state = {
+        test: "test",
         staticStock: [
             {
                 name: "Corporation",
@@ -80,8 +80,7 @@ class Market extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state)
-        // this.loadStocks(this.props)
+
     }
 
     loadStocks(data) {
@@ -94,7 +93,7 @@ class Market extends Component {
         e.preventDefault()
         console.log(data)
         API.getStock(data).then(res => {
-            console.log(res)
+            this.setState({APIdata: res.data["Time Series (Daily)"]})
         })
     }
 
@@ -150,11 +149,8 @@ class Market extends Component {
                             </a>
                         ))
                     }
-                    <div>Item 1</div>
-                    <div>Item 2</div>
-                    <div>Item 3</div>
-                    <div>Item 4</div>
-                </Carousel>;
+                </Carousel>
+
                 <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e => this.buyStocks(e, this.refs.name.value, this.refs.quantity.value)}>
                         <h2>Buy Stocks</h2>
@@ -169,7 +165,7 @@ class Market extends Component {
                         <button type="submit" className="btn btn-primary">Buy</button>
                     </form>
                 </div>
-                <Graph />
+                <Graph test={this.state.APIdata}/>
             </div>
         )
     }

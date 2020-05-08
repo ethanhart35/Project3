@@ -47,16 +47,94 @@ class Graph extends Component {
                         id: 'B',
                         type: 'linear',
                         position: 'right',
-                        ticks: {
-                            max: 20000000,
-                            min: 0
-                        }
+                        // ticks: {
+                        //     max: 20000000,
+                        //     min: 0
+                        // }
                     }]
                 }
             }
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.props.test)
+        if (this.props.test !== prevState.test) {
+            this.setState({ test: this.props.test })
+            console.log(this.state)
+            this.reGenerateGraph()
+        }
+    }
+
+    reGenerateGraph() {
+        let label = [];
+        let open = [];
+        let high = [];
+        let low = [];
+        let close = [];
+        let volume = [];
+
+        var graphData = {
+            labels: label,
+            datasets: [
+                {
+                    label: 'open',
+                    fill: false,
+                    borderColor: 'rgba(148,0,211,1)',
+                    yAxisID: 'A',
+                    data: open
+                }, {
+                    label: 'high',
+                    fill: false,
+                    borderColor: 'rgba(0,0,255,1)',
+                    yAxisID: 'A',
+                    data: high
+                }, {
+                    label: 'low',
+                    fill: false,
+                    borderColor: 'rgba(255,255,0,1)',
+                    yAxisID: 'A',
+                    data: low
+                }, {
+                    label: 'close',
+                    fill: false,
+                    borderColor: 'rgba(255,0,0,1)',
+                    yAxisID: 'A',
+                    data: close
+                }, {
+                    label: 'volume',
+                    fill: false,
+                    borderColor: 'rgba(0,192,0,1)',
+                    yAxisID: 'B',
+                    data: volume
+                }
+            ]
+        };
+
+        Object.entries(this.props.test).map((entry) => {
+            label.push(entry[0]);
+
+            volume.push(entry[1]["5. volume"])
+            open.push(entry[1]["1. open"]);
+            high.push(entry[1]["2. high"]);
+            low.push(entry[1]["3. low"]);
+            close.push(entry[1]["4. close"]);
+        }
+        )
+
+        label.reverse()
+        open.reverse()
+        high.reverse()
+        low.reverse()
+        close.reverse()
+        volume.reverse()
+
+        this.setState({
+            graphData: graphData
+        })
+
+    }
+    // old
 
     generateStock(e) {
         e.preventDefault()

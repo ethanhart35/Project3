@@ -54,7 +54,7 @@ class App extends Component {
       <div>
         <Nav />
         <Router history={history}>
-          <div className="pt-5">
+          <div className="pt-5 container">
             <Route exact path='/' component={HomePage} />
             <Route exact path='/articles' component={Articles} />
             <Route exact path='/market' render={(props) => <Market user={this.state.user} />} />
