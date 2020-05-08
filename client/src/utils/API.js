@@ -1,24 +1,26 @@
 import axios from "axios";
 var cheerio = require("cheerio");
 export default {
-  // Gets all books
-  getBooks: function () {
-    return axios.get("/api/books");
+  getStocks: function () {
+    return axios.get("/stocks")
   },
-  // Gets the book with the given id
-  getBook: function (id) {
-    return axios.get("/api/books/" + id);
-  },
-  // Deletes the book with the given id
-  deleteBook: function (id) {
-    return axios.delete("/api/books/" + id);
-  },
-  // Saves a book to the database
-  saveBook: function (bookData) {
-    return axios.post("/api/books", bookData);
+  getStock: function (id) {
+    return axios.get("/stocks/" + id)
   },
 
-  // ===========================================================
+  buyStock: function (data) {
+    return axios.post("/stocks", data)
+  },
+
+  registerUser: function (data) {
+    return axios.post("/auth/register", data)
+  },
+  loginUser: function (data) {
+    return axios.post("/auth/login", data)
+  },
+  logoutUser: function () {
+    return axios.post("/auth/logout")
+  },
 
   searchStock: function (time, company) {
     var key = "Y630EXU2OC7ZDZ1G"
@@ -27,8 +29,7 @@ export default {
     return axios.get(stockDataString)
   },
 
-scrape: function(){
- return axios.get("/api/scrape");
-}
-
+  scrape: function () {
+    return axios.get("/api/scrape");
+  }
 };
