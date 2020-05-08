@@ -54,6 +54,7 @@ class App extends Component {
             <Route exact path='/market' render={() => <Market user={this.state.user} />} />
             <Route exact path='/login' render={() => <Login callback={this.userCallback.bind(this)} />} />
             <Route exact path='/register' component={Register} />
+            <Route exact path='/profile'component={Profile} />
           </div>
         </Router>
       </div>
