@@ -3,11 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import  history  from './utils/history';
 
 import Nav from "./components/Nav";
-<<<<<<< HEAD
-import Graph from "./components/Graph";
-import Form from "./components/Form;"
-=======
->>>>>>> cf8c5b7d99e1377e48cc0e962851cb80ca6235c3
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from "./pages/Articles/articles";
 import Market from './pages/Market';
