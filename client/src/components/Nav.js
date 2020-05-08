@@ -22,7 +22,7 @@ const Nav = (props) => (
                 </li>
                           
                 <li className="nav-item">
-                    <a className="nav-link btn btn-danger py-0"  id="btn"  href="/login">Sign In</a>
+                    <a className="nav-link btn btn-danger py-0"  id="btn"  href="/register">Register</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link btn btn-primary py-0" href="/profile">Profile</a>
