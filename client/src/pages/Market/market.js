@@ -76,7 +76,7 @@ class Market extends Component {
                 ticker: "TTS"
             }
         ],
-        user: this.props.user
+        // user: this.props.user
     }
 
     componentDidMount() {
@@ -89,11 +89,28 @@ class Market extends Component {
         console.log(this.state)
     }
 
-    loadStock(e, data) {
+    loadStock(e, ticker, time) {
         e.preventDefault()
-        console.log(data)
-        API.getStock(data).then(res => {
-            this.setState({APIdata: res.data["Time Series (Daily)"]})
+        if (ticker === "") { return false }
+
+        API.graphStockSearch(ticker, time).then(res => {
+            // the API timeInterval name and the JSON data recovery timeInterval name are different and need to be
+            // changed in order so variables can be grabbed later
+            let dataInterval = []
+            switch (time) {
+                case "Time_Series_Daily":
+                    dataInterval = "Time Series (Daily)"
+                    break;
+                case "Time_Series_Weekly":
+                    dataInterval = "Weekly Time Series"
+                    break;
+                case "Time_Series_Monthly":
+                    dataInterval = "Monthly Time Series"
+                    break;
+                default:
+            }
+
+            this.setState({ APIdata: res.data[dataInterval] })
         })
     }
 
@@ -139,7 +156,7 @@ class Market extends Component {
                     } */}
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => (
-                            <a onClick={e => this.loadStock(e, stock.ticker)}>
+                            <a onClick={e => this.loadStock(e, stock.ticker, this.refs.time.value)}>
                                 <div className="col p-2 m-3 border">
                                     <div key={i}>
                                         <h2>{stock.ticker}</h2>
@@ -165,7 +182,25 @@ class Market extends Component {
                         <button type="submit" className="btn btn-primary">Buy</button>
                     </form>
                 </div>
-                <Graph test={this.state.APIdata}/>
+
+                <form className="form-inline" onSubmit={e => this.loadStock(e, this.refs.ticker.value, this.refs.time.value)}>
+                    <div className="form-group p-2">
+                        <label for="ticker">Stock Label</label>
+                        <input type='text' ref="ticker" />
+                    </div>
+                    <div className="form-group p-2">
+                        <label for="time">Choose a timeframe:</label>
+                        <select ref="time">
+                            <option value="Time_Series_Daily">Daily</option>
+                            <option value="Time_Series_Weekly">Weekly</option>
+                            <option value="Time_Series_Monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <input type='submit' value='Submit' />
+                </form>
+
+                <Graph APIdata={this.state.APIdata} />
             </div>
         )
     }

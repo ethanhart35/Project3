@@ -25,7 +25,7 @@ export default {
     return axios.post("/auth/logout")
   },
 
-  graphStockSearch: function (time, ticker) {
+  graphStockSearch: function (ticker, time) {
     var key = "Y630EXU2OC7ZDZ1G"
     var stockDataString = "https://www.alphavantage.co/query?function=" + time + "&symbol=" + ticker + "&apikey=" + key
 
