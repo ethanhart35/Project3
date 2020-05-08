@@ -1,7 +1,10 @@
 .navbar {
+    background-color: lightgray;
     position:fixed;
     top:0;
     width: 100%;
+    height: 75px
+    
 }
 .navbar-brand {
     float: left;
@@ -9,8 +12,15 @@
 }
 #brand {
     font-style: Rightous; font-family: 'Righteous', cursive;
-    color: red;
+    color:black;
 }
 .nav-item {
     margin-right: 2em;
+}
+.btn-primary {
+    color: rgba(35, 15, 209, 0.849); 
+    text: white; 
+}
+.btn {
+    color: white; 
 }
