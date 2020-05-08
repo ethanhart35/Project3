@@ -5,15 +5,9 @@ export default {
   getStocks: function (ticker) {
 
   },
-  getStock: function (ticker) {
-    var key = "Y630EXU2OC7ZDZ1G"
-    var dataString = "https://www.alphavantage.co/query?function=Time_Series_Daily&symbol=" + ticker + "&apikey=" + key
-    return axios.get(dataString)
-  },
 
-  buyStock: function (data) {
-    return axios.post("/stocks", data)
-  },
+
+
 
   registerUser: function (data) {
     return axios.post("/auth/register", data)
@@ -24,12 +18,30 @@ export default {
   logoutUser: function () {
     return axios.post("/auth/logout")
   },
-
+  // big API search for the graph, gives lots of data going back months/weeks/days
   graphStockSearch: function (ticker, time) {
     var key = "Y630EXU2OC7ZDZ1G"
     var stockDataString = "https://www.alphavantage.co/query?function=" + time + "&symbol=" + ticker + "&apikey=" + key
 
     return axios.get(stockDataString)
+  },
+  // small api search for company stock information, contains today/last weeks info and percentage changes in value
+  // small but is called multible times concecutively with different tickers for market carosel
+  // cant call multible times concecutivly, API key only allows 5 calls/min
+  getStocks: function (ticker) {
+    var key = "Y630EXU2OC7ZDZ1G"
+    var dataString = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + ticker + "&apikey=" + key
+    return axios.get(dataString)
+  },
+  // single use heavy data API search for detailed singular info
+  getStock: function (ticker) {
+    
+  },
+  buyStock: function (data) {
+    return axios.post("/stocks", data)
+  },
+  sellStock: function (data) {
+    return axios.post("/stocks", data)
   },
 
 
