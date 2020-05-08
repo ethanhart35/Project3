@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
+import API from "../../utils/API"
 
 class Register extends Component {
 
+    state = {
+        msg: []
+    };
+
+    formSubmit(e, name, email, password1, password2) {
+        e.preventDefault()
+        const currentComponent = this
+
+        API.registerUser({ name, email, password1, password2 })
+            .then(res => currentComponent.setState({ msg: res.data })
+            )
+    }
 
     render() {
         return (
+<<<<<<< HEAD
             <div>
                 <div className="jumbotron" style={{ textAlign: 'center' }}>
                     <h1 className="display-4">FAUX FINANCE</h1>
@@ -24,6 +38,50 @@ class Register extends Component {
                             <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Username</label>
                             <div className="input-group mb-2 mr-sm-2">
                                 <input type="text" className="form-control" placeholder="Username" id="usern" />
+=======
+            <div className="container">
+
+                {this.state.msg.map((msg, i) =>
+                    <div key={i} className="row">
+                        <div className="col">
+                            <div className="alert alert-dark alert-dismissible" role="alert">
+                                <h4 className="text-center">{msg.msg}</h4>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <div className="row">
+                    <div className="col-md-6 offset-md-3">
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">Create an Account</h5>
+                                <form onSubmit={e => this.formSubmit(e,
+                                    this.refs.Name.value,
+                                    this.refs.Email.value,
+                                    this.refs.Password1.value,
+                                    this.refs.Password2.value
+                                )}>
+                                    <div className="form-group">
+                                        <label >Name</label>
+                                        <input className="form-control" ref="Name" placeholder="Name" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label >Email address</label>
+                                        <input className="form-control" ref="Email" placeholder="Email" />
+                                        <small className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div className="form-group">
+                                        <label >Password</label>
+                                        <input type="password" className="form-control" ref="Password1" placeholder="Password" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label >Reenter password</label>
+                                        <input type="password" className="form-control" ref="Password2" placeholder="Password authentication" />
+                                    </div>
+                                    <button type="submit" className="btn btn-primary">Register Account</button>
+                                    <p className="text-muted">Already have an account? <a href="/login">Login</a></p>
+                                </form>
+>>>>>>> cf8c5b7d99e1377e48cc0e962851cb80ca6235c3
                             </div>
                         </div>
                         <div className="col">

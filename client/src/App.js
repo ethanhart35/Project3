@@ -1,33 +1,69 @@
-import React from "react"
+import React, { Component } from "react"
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import  history  from './utils/history';
 
 import Nav from "./components/Nav";
+<<<<<<< HEAD
 import Graph from "./components/Graph";
 import Form from "./components/Form;"
+=======
+>>>>>>> cf8c5b7d99e1377e48cc0e962851cb80ca6235c3
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from "./pages/Articles/articles";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Market from './pages/Market';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 
+class App extends Component {
+  state = {
+    user: {
+      // name: "test",
+      // password: "nothanks",
+      // stockData: [
+      //   {
+      //     name: "appdatatest",
+      //     quantity: "25",
+      //     ticker: "PSM"
+      //   }, {
+      //     name: "appdatatest",
+      //     quantity: "25",
+      //     ticker: "PSM"
+      //   }, {
+      //     name: "appdatatest",
+      //     quantity: "25",
+      //     ticker: "PSM"
+      //   },
+      // ]
+    }
+  }
 
-function App() {
-  return (
-    <div>
-      <Nav /> 
-      <Router>
-        <div className="pt-5">  
-          <Route exact path='/' component={HomePage} />
-          <Route exact path="/articles" component={Articles} />
-          <Route exact path="/market" component={Market} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
-        </div>
-      </Router>
-    </div>
-  );
+  userCallback(data) {
+    console.log(data)
+    this.setState({ user: data.user })
+    console.log(this.state.user)
+  }
 
+  componentDidMount() {
+
+  }
+
+  render() {
+    return (
+      <div>
+        <Nav />
+        <Router history={history}>
+          <div className="pt-5">
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/articles' component={Articles} />
+            <Route exact path='/market' render={() => <Market user={this.state.user} />} />
+            <Route exact path='/login' render={() => <Login callback={this.userCallback.bind(this)} />} />
+            <Route exact path='/register' component={Register} />
+          </div>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
