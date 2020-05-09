@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../../components/Nav';
 import API from '../../utils/API';
+
 // var cheerio = require("cheerio");
 var axios = require("axios");
 var results=[];
