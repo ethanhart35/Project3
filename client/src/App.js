@@ -10,18 +10,24 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 
 class App extends Component {
-  state = {
-    user: {
-      _id: "5eabab7fb333e718e4f0e8aa",
-      name: "no",
-      password: "password",
-      stockData: []
+  constructor(props){
+    super(props)
+    const currentComponent = this
+    this.state = {
+      user: {
+        // _id: "5eabab7fb333e718e4f0e8aa",
+        name: "",
+        password: "password",
+        stockData: []
+      }
     }
+    // preserve the initial state in a new object
+    this.baseState = this.state 
   }
 
   // userCallback is passed as props into Login page, when login is sucessful it pulls user data into app so
   // the entire app can use the users data
-  userCallback(data) {
+  userLogin(data) {
     this.setState({ user: data.user })
   }
   // when userCallback uses setstate it automatically triggers this
@@ -29,6 +35,10 @@ class App extends Component {
     if (this.state.user.name !== prevState.user.name) {
       this.setState({ user: this.state.user })
     }
+  }
+
+  userLogout() {
+    this.setState(this.baseState)
   }
 
   render() {
@@ -50,7 +60,7 @@ class App extends Component {
                   <Link to={"/login"}>Log In</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link btn" onClick={API.logoutUser}>Log out</a>
+                  <a className="nav-link btn" onClick={this.userLogout}>Log out</a>
                 </li>
                 <li className="nav-item">
                   <Link to={"/register"}>Register</Link>
@@ -62,9 +72,9 @@ class App extends Component {
             <Route exact path='/' component={HomePage} />
             <Route exact path='/articles' component={Articles} />
             <Route exact path='/market' render={(props) => <Market user={this.state.user} />} />
-            <Route exact path='/login' render={() => <Login callback={this.userCallback.bind(this)} />} />
+            <Route exact path='/login' render={() => <Login callback={this.userLogin.bind(this)} />} />
             <Route exact path='/register' component={Register} />
-            <Route exact path='/profile'component={Profile} />
+            <Route exact path='/profile' component={Profile} />
           </div>
         </Router>
       </div>
