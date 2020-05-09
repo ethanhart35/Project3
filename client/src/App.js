@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import history from './utils/history';
 import API from "./utils/API"
-
-import Nav from "./components/Nav";
+import "./components/Nav.css";
+// import Nav from "./components/Nav";
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from "./pages/Articles/articles";
 import Market from './pages/Market';
@@ -56,23 +56,26 @@ class App extends Component {
         <Router history={history}>
           <div>
             <nav className="navbar navbar-light">
-              <Link to={"/"}>FauxFinance</Link>
+              <Link id="brand" to={"/"}>FauxFinance</Link>
 
               <ul className="nav">
                 <li className="nav-item active">
-                  <Link to={"/articles"}>Articles</Link>
+                  <Link className="nav-link btn btn-primary py-0" to={"/articles"}>Articles</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/market"}>Market</Link>
+                  <Link className="nav-link btn btn-primary py-0" to={"/market"}>Market</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/login"}>Log In</Link>
+                  <Link className="nav-link btn btn-primary py-0" to={"/login"}>Log In</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link btn" onClick={API.logoutUser}>Log out</a>
+                  <a className="nav-link btn btn-primary py-0" onClick={API.logoutUser}>Log out</a>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/register"}>Register</Link>
+                    <a className="nav-link btn btn-primary py-0" href="/profile">Profile</a>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link btn btn-danger py-0" to={"/register"}>Register</Link>
                 </li>
               </ul>
             </nav>
