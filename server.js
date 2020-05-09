@@ -1,29 +1,18 @@
 const express = require("express");
-<<<<<<< HEAD
+
 const session = require('express-session');
 const mongojs = require("mongojs");
-=======
+
 const request = require("request");
 const cheerio = require("cheerio");
 const axios = require("axios");
-var mongojs = require("mongojs");
->>>>>>> master
+
 const mongoose = require("mongoose");
 const passport = require('passport')
 const indexRoutes = require("./routes/index")
 const authRoutes = require("./routes/authRoutes")
 const stockRoutes = require("./routes/stockRoutes")
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-const axios = require("axios");
-const cheerio = require("cheerio");
-=======
-var axios = require("axios");
-var cheerio = require("cheerio");
-=======
->>>>>>> Stashed changes
 
->>>>>>> master
 const app = express();
 const PORT = process.env.PORT || 3001;
 
