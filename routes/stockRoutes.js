@@ -12,10 +12,13 @@ const stockController = require("../controllers/stockController");
 //   .get(booksController.findById)
 //   .put(booksController.update)
 //   .delete(booksController.remove);
-  
 
-router.route("/")
+
+router.route("/buy")
     .post(stockController.buyStock)
+
+router.route("/sell")
+    .post(stockController.sellStock)
 
 
 module.exports = router;
