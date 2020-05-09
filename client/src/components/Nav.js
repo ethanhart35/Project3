@@ -20,13 +20,17 @@ const Nav = (props) => (
                 <li className="nav-item">
                     <a className="nav-link btn btn-primary py-0" onClick={API.logoutUser}>Log out</a>
                 </li>
+                <li className="nav-item">
+                    <a className="nav-link btn btn-primary py-0" href="/profile">Profile</a>
+                </li>
                           
                 <li className="nav-item">
                     <a className="nav-link btn btn-danger py-0"  id="btn"  href="/register">Register</a>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link btn btn-primary py-0" href="/profile">Profile</a>
-                </li>
+
+                {/* <li className="nav-item"> */}
+                    {/* <a className="nav-link btn btn-primary py-0" href="/profile">Profile</a> */}
+                {/* </li> */}
             </ul>
     </nav>
 );
