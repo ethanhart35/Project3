@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import  history  from './utils/history';
+import history from './utils/history';
 
 import Nav from "./components/Nav";
 import HomePage from "./pages/HomePage/HomePage";
@@ -13,23 +13,30 @@ import Profile from './pages/Profile';
 class App extends Component {
   state = {
     user: {
-      // name: "test",
-      // password: "nothanks",
-      // stockData: [
-      //   {
-      //     name: "appdatatest",
-      //     quantity: "25",
-      //     ticker: "PSM"
-      //   }, {
-      //     name: "appdatatest",
-      //     quantity: "25",
-      //     ticker: "PSM"
-      //   }, {
-      //     name: "appdatatest",
-      //     quantity: "25",
-      //     ticker: "PSM"
-      //   },
-      // ]
+      name: "test",
+      password: "nothanks",
+      stockData: [
+        {
+          name: "appdatatest1",
+          quantity: "25",
+          ticker: "PSM"
+        }, {
+          name: "appdatatest2",
+          quantity: "25",
+          ticker: "RPM"
+        }, {
+          name: "appdatatest3",
+          quantity: "25",
+          ticker: "PLM"
+        },
+      ]
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.user.name !== prevState.user.name) {
+      this.setState({user: this.state})
+      console.log(this.state)
     }
   }
 
@@ -40,7 +47,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    console.log("app mounted")
   }
 
   render() {
@@ -48,10 +55,10 @@ class App extends Component {
       <div>
         <Nav />
         <Router history={history}>
-          <div className="pt-5">
+          <div className="pt-5 container">
             <Route exact path='/' component={HomePage} />
             <Route exact path='/articles' component={Articles} />
-            <Route exact path='/market' render={() => <Market user={this.state.user} />} />
+            <Route exact path='/market' render={(props) => <Market user={this.state.user} />} />
             <Route exact path='/login' render={() => <Login callback={this.userCallback.bind(this)} />} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/profile'component={Profile} />
