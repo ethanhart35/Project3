@@ -16,6 +16,7 @@ export default {
     return axios.post("/auth/login", data)
   },
   logoutUser: function () {
+    console.log("logout click")
     return axios.post("/auth/logout")
   },
   // big API search for the graph, gives lots of data going back months/weeks/days

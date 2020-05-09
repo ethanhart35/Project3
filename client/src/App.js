@@ -55,7 +55,7 @@ class App extends Component {
         <Router history={history}>
           <div>
             <nav className="navbar navbar-light">
-              <a className="navbar-brand" id="brand" href="/">FauxFinance</a>
+              <Link to={"/"}>FauxFinance</Link>
 
               <ul className="nav">
                 <li className="nav-item active">
@@ -68,8 +68,7 @@ class App extends Component {
                   <Link to={"/login"}>Log In</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={API.logoutUser}>Log out</a>
-                  {/* <Link onClick={API.logoutUser}>Log out</Link> */}
+                  <a className="nav-link btn" onClick={API.logoutUser}>Log out</a>
                 </li>
                 <li className="nav-item">
                   <Link to={"/register"}>Register</Link>
