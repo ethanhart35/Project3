@@ -11,10 +11,8 @@ class Login extends Component  {
 
     formSubmit = (e, email, password) => {
         e.preventDefault()
-        const currentComponent = this;
         API.loginUser({ email, password })
             .then(res => {
-                console.log(res)
                 this.setState({ msg: [res.data[0]]})
                 this.props.callback(res.data[1])
                 // this.push({pathname: "/market", data: res.data[1]})

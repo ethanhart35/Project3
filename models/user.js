@@ -5,6 +5,7 @@ const userSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    netWorth: { type: Number , required: true },
     stockData: [
         {
             name: { type: String },
