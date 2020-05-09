@@ -47,23 +47,26 @@ class App extends Component {
         <Router>
           <div>
             <nav className="navbar navbar-light">
-              <Link to={"/"}>FauxFinance</Link>
+              <Link id="brand" to={"/"}>FauxFinance</Link>
 
               <ul className="nav">
                 <li className="nav-item active">
-                  <Link to={"/articles"}>Articles</Link>
+                  <Link className="nav-link btn btn-primary py-0" to={"/articles"}>Articles</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/market"}>Market</Link>
+                  <Link className="nav-link btn btn-primary py-0" to={"/market"}>Market</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/login"}>Log In</Link>
+                  <Link className="nav-link btn btn-primary py-0" to={"/login"}>Log In</Link>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link btn btn-primary py-0" onClick={API.logoutUser}>Log out</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link btn" onClick={this.userLogout}>Log out</a>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/register"}>Register</Link>
+                  <Link className="nav-link btn btn-danger py-0" to={"/register"}>Register</Link>
                 </li>
               </ul>
             </nav>
