@@ -88,7 +88,7 @@ class Market extends Component {
     }
 
     // api the stock and display data on the graph
-    loadStock(e, ticker, time) {
+    loadGraph(e, ticker, time) {
         e.preventDefault()
         if (ticker === "") { return false }
 
@@ -114,6 +114,21 @@ class Market extends Component {
             }
 
             this.setState({ APIdata: res.data[dataInterval] })
+        })
+    }
+
+    googleStock(e, search) {
+        API.searchStock(search).then(res => {
+            console.log(res.data.bestMatches)
+            res.data.bestMatches.map(res2 => {
+                console.log(res2)
+                return <div>
+                    <p>{res2.symbol}</p>
+                    <p>{res2.name}</p>
+                    <p>{res2.type}</p>
+                    <p>{res2.region}</p>
+                </div>
+            })
         })
     }
 
@@ -165,7 +180,7 @@ class Market extends Component {
                     } */}
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => {
-                            return <a onClick={e => this.loadStock(e, stock.ticker, this.refs.time.value)}>
+                            return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
                                 <div className="col p-2 m-3 border">
                                     <div key={i}>
                                         <h2>{stock.ticker}</h2>
@@ -209,7 +224,7 @@ class Market extends Component {
                 </div>
 
                 {/* https://www.alphavantage.co/documentation/  SEARCH ENDPOINTS API call could help autofill the .refs.name      set it on a ticker so the call goes off as second or 2 after they stop typing */}
-                <form className="form-inline" onSubmit={e => this.loadStock(e, this.refs.ticker.value, this.refs.time.value)}>
+                <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
                     <div className="form-group p-2">
                         <label for="ticker">Stock Label</label>
                         <input type='text' ref="ticker" />

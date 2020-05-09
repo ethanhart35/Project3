@@ -35,7 +35,12 @@ export default {
   },
   // single use heavy data API search for detailed singular info
   getStock: function (ticker) {
-    
+
+  },
+  searchStock: function (search) {
+    var key = "Y630EXU2OC7ZDZ1G"
+    var searchString = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + search + "&apikey=" + key
+    return axios.get(searchString)
   },
   buyStock: function (data) {
     return axios.post("/stocks/buy", data)
