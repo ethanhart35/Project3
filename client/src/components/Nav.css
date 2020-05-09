@@ -18,7 +18,8 @@
     margin-right: 2em;
 }
 .btn-primary {
-    color: rgba(35, 15, 209, 0.849); 
+    /* color: rgba(35, 15, 209, 0.849);  */
+    color: #066940d8; 
     text: white; 
 }
 .btn {
