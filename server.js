@@ -1,12 +1,8 @@
 const express = require("express");
-
-const session = require('express-session');
-const mongojs = require("mongojs");
-
 const request = require("request");
 const cheerio = require("cheerio");
 const axios = require("axios");
-
+const mongojs = require("mongojs");
 const mongoose = require("mongoose");
 const passport = require('passport')
 const indexRoutes = require("./routes/index")
