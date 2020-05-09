@@ -1,9 +1,7 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import history from './utils/history';
 import API from "./utils/API"
 
-import Nav from "./components/Nav";
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from "./pages/Articles/articles";
 import Market from './pages/Market';
@@ -14,46 +12,29 @@ import Profile from './pages/Profile';
 class App extends Component {
   state = {
     user: {
-      name: "test",
-      password: "nothanks",
-      stockData: [
-        {
-          name: "appdatatest1",
-          quantity: "25",
-          ticker: "PSM"
-        }, {
-          name: "appdatatest2",
-          quantity: "25",
-          ticker: "RPM"
-        }, {
-          name: "appdatatest3",
-          quantity: "25",
-          ticker: "PLM"
-        },
-      ]
+      _id: "5eabab7fb333e718e4f0e8aa",
+      name: "no",
+      password: "password",
+      stockData: []
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.user.name !== prevState.user.name) {
-      this.setState({ user: this.state.user })
-      console.log(this.state.user)
-    }
-  }
-
+  // userCallback is passed as props into Login page, when login is sucessful it pulls user data into app so
+  // the entire app can use the users data
   userCallback(data) {
     this.setState({ user: data.user })
   }
-
-  componentDidMount() {
-    console.log("app mounted")
+  // when userCallback uses setstate it automatically triggers this
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.user.name !== prevState.user.name) {
+      this.setState({ user: this.state.user })
+    }
   }
 
   render() {
     return (
       <div>
-        {/* <Nav /> */}
-        <Router history={history}>
+        <Router>
           <div>
             <nav className="navbar navbar-light">
               <Link to={"/"}>FauxFinance</Link>

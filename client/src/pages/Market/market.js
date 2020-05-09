@@ -79,6 +79,10 @@ class Market extends Component {
         // user: this.props.user
     }
 
+    componentDidMount() {
+        console.log(this.props.user)
+    }
+
     // to be used in the carosell to search all the tickers and give back percentage changes
     // cant work becouse limited API calls
     loadStocks(data) {
@@ -132,24 +136,33 @@ class Market extends Component {
         })
     }
 
+    
     // api search current price, calculate and then api.buy to change user data accordingly
     buyStock(e, name, quantity) {
         e.preventDefault()
-        API.buyStock({ name, quantity })
+        if (this.props.user._id === undefined) return false;
+
+        let id = this.props.user._id
+        let stats = { name, quantity , id}
+        API.buyStock(stats)
     }
 
     // api search current price, calculate then api.sell to change user data acordingly
     sellStock(e, name, quantity) {
         e.preventDefault()
-        API.sellStock({ name, quantity })
+        if (this.props.user._id === undefined) return false;
+
+        let id = this.props.user._id
+        let stats = { name, quantity, id }
+        API.sellStock(stats)
     }
 
     render() {
         return (
             <div>
                 <Carousel responsive={responsive}
-                    swipeable={false}
-                    draggable={false}
+                    swipeable={true}
+                    draggable={true}
                     // showDots={true}
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
@@ -164,12 +177,12 @@ class Market extends Component {
                     dotListClass="custom-dot-list-style"
                     itemClass="carousel-item-padding-40-px"
                 >
-                    {/* {   // user specific 
-                        this.state.user.stockData.map((stock, i) => {
+                    {   // user specific 
+                        this.props.user.stockData.map((stock, i) => {
                             // if (!this.state.user.stockData === undefined) {
                             //     return 
                             // }
-                            return <div className="col p-2 m-3 border">
+                            return <div className="col p-2 m-3 border bg-sucess">
                                 <div key={i}>
                                     <h2>{stock.ticker}</h2>
                                     <p className="text-muted">{stock.name}</p>
@@ -177,11 +190,11 @@ class Market extends Component {
                                 </div>
                             </div>
                         })
-                    } */}
+                    }
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => {
                             return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
-                                <div className="col p-2 m-3 border">
+                                <div className="col p-2 m-3 border bg-danger">
                                     <div key={i}>
                                         <h2>{stock.ticker}</h2>
                                         <p className="text-muted">{stock.name}</p>
@@ -194,30 +207,31 @@ class Market extends Component {
 
                 <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e =>
-                        this.buyStock(e, this.refs.name.value, this.refs.quantity.value)}>
+                        this.buyStock(e, this.refs.name1.value, this.refs.quantity1.value)}>
                         <h2>Buy Stocks</h2>
                         <div className="form-group">
                             <label>Stock Name</label>
-                            <input className="form-control" ref="name" placeholder="Enter stock tag" />
+                            <input className="form-control" ref="name1" placeholder="Enter stock tag" />
                         </div>
                         <div className="form-group">
                             <label>Quantity</label>
-                            <input className="form-control" type="number" ref="quantity" placeholder="Enter stock quantity" />
+                            <input className="form-control" type="number" ref="quantity1" placeholder="Enter stock quantity" />
                         </div>
                         <button type="submit" className="btn btn-primary">Buy</button>
                     </form>
                 </div>
 
                 <div>
-                    <form className="form-inline border p-2 m-2" onSubmit={e => this.sellStock(e, this.refs.name.value, this.refs.quantity.value)}>
+                    <form className="form-inline border p-2 m-2" onSubmit={e =>
+                        this.sellStock(e, this.refs.name2.value, this.refs.quantity2.value)}>
                         <h2>Sell Stocks</h2>
                         <div className="form-group">
                             <label>Stock Name</label>
-                            <input className="form-control" ref="name" placeholder="Enter stock tag" />
+                            <input className="form-control" ref="name2" placeholder="Enter stock tag" />
                         </div>
                         <div className="form-group">
                             <label>Quantity</label>
-                            <input className="form-control" type="number" ref="quantity" placeholder="Enter stock quantity" />
+                            <input className="form-control" type="number" ref="quantity2" placeholder="Enter stock quantity" />
                         </div>
                         <button type="submit" className="btn btn-primary">Buy</button>
                     </form>

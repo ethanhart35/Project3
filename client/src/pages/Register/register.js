@@ -23,7 +23,7 @@ class Register extends Component {
                     <h1 className="display-4">FAUX FINANCE</h1>
                 </div>
                 <h2 style={{ textAlign: 'center', margin: '0 0 1rem' }}>REGISTRATION FORM</h2>
-                <form>
+                <form onSubmit={e => this.formSubmit(e, this.refs.name.value, this.refs.email.value, this.refs.password1.value, this.refs.password2.value)}>
                     <div className="row" style={{ textAlign: 'center', margin: '0 0 3rem' }}>
                         <div className="col">
                             <input type="text" className="form-control" placeholder="First name" id="firstn" />
@@ -173,14 +173,18 @@ class Register extends Component {
                     </div>
                     <div className="row" style={{ textAlign: 'center', margin: '0 0 1rem' }}>
                         <div className="col">
-                            <label htmlFor="exampleInputEmail1" />
+                            <label/>
                             <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Email Address" id="email" />
                             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
                   else.</small>
                         </div>
                         <div className="col">
-                            <label htmlFor="exampleInputPassword1" />
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            <label/>
+                            <input type="password" className="form-control" id="Password1" placeholder="Password" />
+                        </div>
+                        <div className="col">
+                            <label/>
+                            <input type="password" className="form-control" id="Password2" placeholder="Password Confirm" />
                         </div>
                     </div>
                     <button type="submit" className="btn btn-primary" id="submit">Submit</button>

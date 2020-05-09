@@ -3,13 +3,19 @@ const User = require("../models/user")
 module.exports = {
 
     buyStock: function (req, res) {
-        const { name, quantity } = req.body
-        console.log(req.body)
-        // User
+        const { name, quantity, id } = req.body
+        User.findById(id).then(user => {
+            console.log(user)
+            console.log(name+quantity)
+        })
     },
 
     sellStock: function (req, res ) {
-        console.log(req.body)
+        const { name, quantity, id } = req.body
+        User.findById(id).then(user => {
+            console.log(user)
+            console.log(name+quantity)
+        })
     }
 
 }

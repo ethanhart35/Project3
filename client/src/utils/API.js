@@ -5,10 +5,6 @@ export default {
   getStocks: function (ticker) {
 
   },
-
-
-
-
   registerUser: function (data) {
     return axios.post("/auth/register", data)
   },
