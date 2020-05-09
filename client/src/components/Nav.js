@@ -2,6 +2,8 @@ import React from "react";
 import "./Nav.css";
 import API from "../utils/API";
 
+
+// OUTDATED NAVBAR IS NOW DIRECTLY IN APP.JS /W ROUTER 
 const Nav = (props) => (
     <nav className="navbar navbar-light">
         <a className="navbar-brand" id="brand" href="/">FauxFinance</a>
