@@ -1,3 +1,6 @@
 .Articles {
-    background-image: url("./pages/components/images/ltgrnmarble3.jpg");
+       background-image: url("../../components/images/coins.jpg");
+    /* height: 100vh;  */
+    background: cover;
+    height: 100vh; 
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API"
+// import Jumbo from '../../components/Jumbotron'
+import "./register.css"
 
 class Register extends Component {
 
@@ -18,10 +20,16 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <div className="jumbotron" style={{ textAlign: 'center' }}>
-                    <h1 className="display-4">FAUX FINANCE</h1>
-                </div>
+            <div id="register">
+                
+                {/* <div className="jumbotron" style={{ textAlign: 'center' }}> */}
+                    {/* <h1 className="display-4">FAUX FINANCE</h1> */}
+                {/* </div> */}
+                {/* <Jumbo/> */}
+                <div className="row">
+                        <div className="col-md-6 offset-md-3">
+                <div className="card">
+                                <div className="card-body">
                 <h2 style={{ textAlign: 'center', margin: '0 0 1rem' }}>REGISTRATION FORM</h2>
                 <form>
                     <div className="row" style={{ textAlign: 'center', margin: '0 0 3rem' }}>
@@ -185,6 +193,10 @@ class Register extends Component {
                     </div>
                     <button type="submit" className="btn btn-primary" id="submit">Submit</button>
                 </form>
+                </div>
+                </div>
+                </div>
+                </div>
             </div>
 
         )
