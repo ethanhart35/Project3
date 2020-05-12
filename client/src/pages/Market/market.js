@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Graph from '../../components/Graph'
 import API from '../../utils/API';
 
+
 // both are needed
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';

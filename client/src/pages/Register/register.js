@@ -175,7 +175,7 @@ class Register extends Component {
                                                             <option value={1901}>1901</option>
                                                             <option value={1900}>1900</option>
                                                         </select> Birth Year
-                    </div>
+                                            </div>
                                                 </label></div>
                                         </div>
                                     </div>
@@ -183,8 +183,7 @@ class Register extends Component {
                                         <div className="col">
                                             <label htmlFor="exampleInputEmail1" />
                                             <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Email Address" id="email" />
-                                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
-                  else.</small>
+                                            <small id="emailHelp" className="form-text text-black-50">We'll never share your email with anyone else.</small>
                                         </div>
                                         <div className="col">
                                             <label htmlFor="exampleInputPassword1" />

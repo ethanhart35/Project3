@@ -24,24 +24,28 @@ class Articles extends Component {
 
   render() {
     return (
-      <div className="Articles">
-        <h1>Learn About Finance with up to date Articles</h1>
-        <div className="card-columns">
-        {this.state.titleArr.map((item) => {
-          return( 
-          
-        
-  <div className="card  mt-1"  key={item.title}>
-    <div className="card-body">
-    <a className="font-weight-bold"  href={"https://www.nytimes.com/" + item.link}> {item.title}</a>
+      <div className="body">
+        <div className="container">
+        <div className="Articles">
+          <h1>Learn About Finance with up to date Articles</h1>
+          <div className="card-columns">
+            {this.state.titleArr.map((item) => {
+              return (
 
-    </div>
-  </div>
-  
-          )
-        } )}
+
+                <div className="card  mt-1" key={item.title}>
+                  <div className="card-body">
+                    <a className="font-weight-bold" href={"https://www.nytimes.com/" + item.link}> {item.title}</a>
+
+                  </div>
+                </div>
+
+              )
+            })}
+          </div>
         </div>
       </div>
+      </div >
     );
   }
 }
