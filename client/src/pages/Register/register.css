@@ -3,3 +3,6 @@
     background: cover;
     height: 100vh; 
 }
+.row {
+    padding-top: 15px;
+}
