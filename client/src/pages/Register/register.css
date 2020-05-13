@@ -1,5 +1,7 @@
 #register {
     background-image: url("../../components/images/plant$.jpg");
     background: cover;
+    /* ?background-repeat: no-repeat; */
     height: 125vh; 
+
 }
