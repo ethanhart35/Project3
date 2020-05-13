@@ -8,8 +8,7 @@ function HomePage(props) {
     <Graph />
     <div id='charts' style={{height:"100vh"}}>
     {/* <StockNav/> */}
-    
-    </div>
+       </div>
     </>
   }
   

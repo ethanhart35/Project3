@@ -1,5 +1,5 @@
-#navbar {
-    background-color: black;
+.navbar {
+    background-color: lightgray;
     position:fixed;
     top:0;
     width: 100%;
@@ -9,11 +9,19 @@
 .navbar-brand {
     float: left;
     margin-left: 20px;
-    color: white;
+}
+#brand {
+    font-style: Rightous; font-family: 'Righteous', cursive;
+    color:black;
 }
 .nav-item {
     margin-right: 2em;
 }
-.nav-link{
-    
+.btn-primary {
+    /* color: rgba(35, 15, 209, 0.849);  */
+    color: #066940d8; 
+    text: white; 
+}
+.btn {
+    color: white; 
 }
