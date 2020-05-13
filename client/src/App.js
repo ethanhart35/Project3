@@ -32,6 +32,7 @@ class App extends Component {
   }
   // when userCallback uses setstate it automatically triggers this
   componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(snapshot)
     if (this.state.user.name !== prevState.user.name) {
       this.setState({ user: this.state.user })
     }

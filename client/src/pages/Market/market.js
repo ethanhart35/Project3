@@ -37,6 +37,7 @@ class Market extends Component {
 
     state = {
         test: "test",
+        search: [],
         staticStock: [
             {
                 name: "Corporation",
@@ -97,6 +98,7 @@ class Market extends Component {
         if (ticker === "") { return false }
 
         API.graphStockSearch(ticker, time).then(res => {
+            console.log(res)
             if (res.data.Note !== undefined || res.data["Error Message"] !== undefined) {
                 console.log("Invalid or over API key call limit")
                 return false
@@ -118,32 +120,29 @@ class Market extends Component {
             }
 
             this.setState({ APIdata: res.data[dataInterval] })
+            console.log(this.state.APIdata)
         })
     }
 
     googleStock(e, search) {
+        e.preventDefault()
+        let currentComponent = this
         API.searchStock(search).then(res => {
-            console.log(res.data.bestMatches)
-            res.data.bestMatches.map(res2 => {
-                console.log(res2)
-                return <div>
-                    <p>{res2.symbol}</p>
-                    <p>{res2.name}</p>
-                    <p>{res2.type}</p>
-                    <p>{res2.region}</p>
-                </div>
-            })
+            console.log(res)
+            currentComponent.setState({search: res.data.bestMatches})
+            console.log(this.state)
+            // var search = res.data.bestMatches
         })
     }
 
-    
+
     // api search current price, calculate and then api.buy to change user data accordingly
     buyStock(e, name, quantity) {
         e.preventDefault()
         if (this.props.user._id === undefined) return false;
 
         let id = this.props.user._id
-        let stats = { name, quantity , id}
+        let stats = { name, quantity, id }
         API.buyStock(stats)
     }
 
@@ -205,7 +204,12 @@ class Market extends Component {
                     }
                 </Carousel>
 
-                <div>
+                <div className="row">
+                    <h2></h2>
+
+                </div>
+
+                {/* <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e =>
                         this.buyStock(e, this.refs.name1.value, this.refs.quantity1.value)}>
                         <h2>Buy Stocks</h2>
@@ -235,7 +239,7 @@ class Market extends Component {
                         </div>
                         <button type="submit" className="btn btn-primary">Buy</button>
                     </form>
-                </div>
+                </div> */}
 
                 {/* https://www.alphavantage.co/documentation/  SEARCH ENDPOINTS API call could help autofill the .refs.name      set it on a ticker so the call goes off as second or 2 after they stop typing */}
                 <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
@@ -254,6 +258,21 @@ class Market extends Component {
 
                     <input type='submit' value='Submit' />
                 </form>
+
+                <form onSubmit={e => this.googleStock(e, this.refs.search.value)}>
+                    <lablel>Ticker Search</lablel>
+                    <input type="text" ref="search"></input>
+                    <input type='submit' value='Submit' />
+                </form>
+
+                {this.state.search.map((google, i) => (
+                    <div key={i} className="border">
+                        {google["1. symbol"]}
+                        {google["2. name"]}
+                        {google["3. type"]}
+                        {google["4. region"]}
+                    </div>
+                ))}
 
                 <Graph APIdata={this.state.APIdata} />
             </div>

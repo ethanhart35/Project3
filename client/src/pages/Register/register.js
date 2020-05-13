@@ -12,8 +12,7 @@ class Register extends Component {
         const currentComponent = this
 
         API.registerUser({ name, email, password1, password2 })
-            .then(res => currentComponent.setState({ msg: res.data })
-            )
+            .then(res => currentComponent.setState({ msg: res.data }))
     }
 
     render() {
