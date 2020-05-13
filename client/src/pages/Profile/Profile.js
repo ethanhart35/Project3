@@ -5,10 +5,10 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
-                <div className="jumbotron" style={{ textAlign: 'center' }}>
-                    <h1 className="display-4">FAUX FINANCE</h1>
-                </div>
+            <div className="body">
+                {/* <div className="jumbotron" style={{ textAlign: 'center' }}> */}
+                    {/* <h1 className="display-4">FAUX FINANCE</h1> */}
+                {/* </div> */}
                 <div className="container">
                     <div className="row">
                         <div className="col-lg">

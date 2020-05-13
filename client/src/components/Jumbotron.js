@@ -6,5 +6,5 @@ export default ()=> <div className="jumbotron">
 <p className="lead">Planning for the Future?</p>
 <hr className="my-4"/>
 <p>Use these tools and information to make educated decisions.</p>
-<a className="btn btn-warning btn-lg" href="#charts" role="button">More</a>
+{/* <a className="btn btn-warning btn-lg" id="btn"  href="/register">Register</a> */}
 </div>
