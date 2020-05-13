@@ -3,7 +3,7 @@ import API from '../../utils/API';
 import history from '../../utils/history';
 
 
-class Login extends Component  {
+class Login extends Component {
 
     state = {
         msg: []
@@ -13,10 +13,9 @@ class Login extends Component  {
         e.preventDefault()
         API.loginUser({ email, password })
             .then(res => {
-                this.setState({ msg: [res.data[0]]})
+                this.setState({ msg: [res.data[0]] })
+                if (res.data[0].msg === "no user") return false
                 this.props.callback(res.data[1])
-                // this.push({pathname: "/market", data: res.data[1]})
-                // console.log(history)
             }
             )
     }

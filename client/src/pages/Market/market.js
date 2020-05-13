@@ -5,6 +5,7 @@ import API from '../../utils/API';
 // both are needed
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Display from '../../components/marketDisplay/display';
 
 const responsive = {
     superLargeDesktop: {
@@ -80,10 +81,6 @@ class Market extends Component {
         // user: this.props.user
     }
 
-    componentDidMount() {
-        console.log(this.props.user)
-    }
-
     // to be used in the carosell to search all the tickers and give back percentage changes
     // cant work becouse limited API calls
     loadStocks(data) {
@@ -98,7 +95,6 @@ class Market extends Component {
         if (ticker === "") { return false }
 
         API.graphStockSearch(ticker, time).then(res => {
-            console.log(res)
             if (res.data.Note !== undefined || res.data["Error Message"] !== undefined) {
                 console.log("Invalid or over API key call limit")
                 return false
@@ -120,7 +116,6 @@ class Market extends Component {
             }
 
             this.setState({ APIdata: res.data[dataInterval] })
-            console.log(this.state.APIdata)
         })
     }
 
@@ -128,13 +123,9 @@ class Market extends Component {
         e.preventDefault()
         let currentComponent = this
         API.searchStock(search).then(res => {
-            console.log(res)
-            currentComponent.setState({search: res.data.bestMatches})
-            console.log(this.state)
-            // var search = res.data.bestMatches
+            currentComponent.setState({ search: res.data.bestMatches })
         })
     }
-
 
     // api search current price, calculate and then api.buy to change user data accordingly
     buyStock(e, name, quantity) {
@@ -178,9 +169,6 @@ class Market extends Component {
                 >
                     {   // user specific 
                         this.props.user.stockData.map((stock, i) => {
-                            // if (!this.state.user.stockData === undefined) {
-                            //     return 
-                            // }
                             return <div className="col p-2 m-3 border bg-sucess">
                                 <div key={i}>
                                     <h2>{stock.ticker}</h2>
@@ -204,10 +192,7 @@ class Market extends Component {
                     }
                 </Carousel>
 
-                <div className="row">
-                    <h2></h2>
-
-                </div>
+                <Display data={this.state.APIdata} />
 
                 {/* <div>
                     <form className="form-inline border p-2 m-2" onSubmit={e =>
@@ -266,11 +251,21 @@ class Market extends Component {
                 </form>
 
                 {this.state.search.map((google, i) => (
-                    <div key={i} className="border">
-                        {google["1. symbol"]}
-                        {google["2. name"]}
-                        {google["3. type"]}
-                        {google["4. region"]}
+                    <div key={i} className="border container-fluid">
+                        <div className="row">
+                            <div className="col">
+                                {google["1. symbol"]}
+                            </div>
+                            <div className="col">
+                                {google["2. name"]}
+                            </div>
+                            <div className="col">
+                                {google["3. type"]}
+                            </div>
+                            <div className="col">
+                                {google["4. region"]}
+                            </div>
+                        </div>
                     </div>
                 ))}
 
