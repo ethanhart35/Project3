@@ -37,6 +37,7 @@ class App extends Component {
     }
   }
 
+  // logout nonfuctional, needs to delete the users data from the app or replace it with something blank
   userLogout() {
     this.setState(this.baseState)
   }

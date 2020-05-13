@@ -31,11 +31,6 @@ const responsive = {
 };
 
 class Market extends Component {
-    constructor(props) {
-        super(props)
-
-    }
-
     state = {
         test: "test",
         search: [],
@@ -78,7 +73,6 @@ class Market extends Component {
                 ticker: "TTS"
             }
         ],
-        // user: this.props.user
     }
 
     // to be used in the carosell to search all the tickers and give back percentage changes
@@ -114,37 +108,19 @@ class Market extends Component {
                     break;
                 default:
             }
-
-            this.setState({ APIdata: res.data[dataInterval] })
+            console.log(res)
+            this.setState({ APIdata: res.data[dataInterval], meta: res.data["Meta Data"], search: []})
         })
     }
 
     googleStock(e, search) {
         e.preventDefault()
         let currentComponent = this
+        if (search === "") return false
         API.searchStock(search).then(res => {
+            if (res.data.bestMatches === [] || res.data.Note !== undefined) return false
             currentComponent.setState({ search: res.data.bestMatches })
         })
-    }
-
-    // api search current price, calculate and then api.buy to change user data accordingly
-    buyStock(e, name, quantity) {
-        e.preventDefault()
-        if (this.props.user._id === undefined) return false;
-
-        let id = this.props.user._id
-        let stats = { name, quantity, id }
-        API.buyStock(stats)
-    }
-
-    // api search current price, calculate then api.sell to change user data acordingly
-    sellStock(e, name, quantity) {
-        e.preventDefault()
-        if (this.props.user._id === undefined) return false;
-
-        let id = this.props.user._id
-        let stats = { name, quantity, id }
-        API.sellStock(stats)
     }
 
     render() {
@@ -162,7 +138,7 @@ class Market extends Component {
                     customTransition="all .5"
                     transitionDuration={500}
                     containerClass="carousel-container"
-                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    // removeArrowOnDeviceType={["tablet", "mobile"]}
                     deviceType={this.props.deviceType}
                     dotListClass="custom-dot-list-style"
                     itemClass="carousel-item-padding-40-px"
@@ -192,39 +168,11 @@ class Market extends Component {
                     }
                 </Carousel>
 
-                <Display data={this.state.APIdata} />
-
-                {/* <div>
-                    <form className="form-inline border p-2 m-2" onSubmit={e =>
-                        this.buyStock(e, this.refs.name1.value, this.refs.quantity1.value)}>
-                        <h2>Buy Stocks</h2>
-                        <div className="form-group">
-                            <label>Stock Name</label>
-                            <input className="form-control" ref="name1" placeholder="Enter stock tag" />
-                        </div>
-                        <div className="form-group">
-                            <label>Quantity</label>
-                            <input className="form-control" type="number" ref="quantity1" placeholder="Enter stock quantity" />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Buy</button>
-                    </form>
-                </div>
-
-                <div>
-                    <form className="form-inline border p-2 m-2" onSubmit={e =>
-                        this.sellStock(e, this.refs.name2.value, this.refs.quantity2.value)}>
-                        <h2>Sell Stocks</h2>
-                        <div className="form-group">
-                            <label>Stock Name</label>
-                            <input className="form-control" ref="name2" placeholder="Enter stock tag" />
-                        </div>
-                        <div className="form-group">
-                            <label>Quantity</label>
-                            <input className="form-control" type="number" ref="quantity2" placeholder="Enter stock quantity" />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Buy</button>
-                    </form>
-                </div> */}
+                <Display
+                    data={this.state.APIdata}
+                    meta={this.state.meta}
+                    user={this.props.user}
+                />
 
                 {/* https://www.alphavantage.co/documentation/  SEARCH ENDPOINTS API call could help autofill the .refs.name      set it on a ticker so the call goes off as second or 2 after they stop typing */}
                 <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
