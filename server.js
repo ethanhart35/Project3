@@ -28,6 +28,8 @@ db.on("error", function (error) {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// app.use(express.bodyParser())
+
 
 // Passport middleware
 app.use(passport.initialize());

@@ -10,19 +10,19 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     const currentComponent = this
     this.state = {
       user: {
-        // _id: "5eabab7fb333e718e4f0e8aa",
+        _id: "5eabab7fb333e718e4f0e8aa",
         name: "",
         password: "password",
         stockData: []
       }
     }
     // preserve the initial state in a new object
-    this.baseState = this.state 
+    this.baseState = this.state
   }
 
   // userCallback is passed as props into Login page, when login is sucessful it pulls user data into app so
@@ -71,14 +71,15 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
-            <br />
-            <br />
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/articles' component={Articles} />
-            <Route exact path='/market' render={(props) => <Market user={this.state.user} />} />
-            <Route exact path='/login' render={() => <Login callback={this.userLogin.bind(this)} />} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/profile' component={Profile} />
+
+            <div className="pt-5">
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/articles' component={Articles} />
+              <Route exact path='/market' render={(props) => <Market user={this.state.user} />} />
+              <Route exact path='/login' render={() => <Login callback={this.userLogin.bind(this)} />} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/profile' component={Profile} />
+            </div>
           </div>
         </Router>
       </div>

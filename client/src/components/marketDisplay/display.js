@@ -27,6 +27,7 @@ class Display extends Component {
         console.log(average)
         this.setState({
             name: this.props.meta["2. Symbol"],
+            worth: this.props.user.worth,
             average: average,
             open: today["1. open"],
             high: today["2. high"],
@@ -36,17 +37,23 @@ class Display extends Component {
         })
     }
 
-    vend(e, quantity) {
+    setPrice(e, quantity) {
         e.preventDefault()
-        // if (this.props.user._id === undefined) return false;
+        let price = (Number(this.state.average) * Number(quantity)).toFixed(4)
+        this.setState({price: price})
+    }
 
-        // average * quantity = price 
-        // mongo needs to change stock quantity and the netWorth change to the correct user
+    vend(e) {
+        e.preventDefault()
 
         let id = this.props.user._id
         let name = this.props.meta["2. Symbol"]
-        let stats = { name, quantity, id }
-        API.vendStock(stats)
+        let price = this.state.price
+
+        let stats = { name, price, id }
+        API.vendStock(stats).then(res => {
+            console.log(res)
+        })
     }
 
     render() {
@@ -60,7 +67,15 @@ class Display extends Component {
                     <div className="col">
                         <h5>Daily average: {this.state.average}</h5>
                     </div>
-                    <input type="number" ref="quantity" onChange={e => this.vend(e, this.refs.quantity.value)} />
+                    <div className="col">
+                        <h5>Price: {this.state.price}</h5>
+                    </div>
+                    <div className="col">
+                        <form onSubmit={e => this.vend(e)}>
+                            <input type="number" ref="quantity" onChange={e => this.setPrice(e, this.refs.quantity.value)} />
+                            <button>Vend Stocks</button>
+                        </form>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col">

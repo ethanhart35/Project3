@@ -33,6 +33,7 @@ export default {
     return axios.get(searchString)
   },
   vendStock: function (transaction) {
+    console.log(transaction)
     return axios.post("/stocks/vend", transaction)
   },
 

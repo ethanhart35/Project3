@@ -19,10 +19,10 @@ module.exports = {
     },
 
     vendStock: function (req, res) {
-        const { name, quantity, id } = req.body
+        const { name, price, id } = req.body
         User.findById(id).then(user => {
             console.log(user)
-            console.log(name + quantity)
+
         })
     }
 

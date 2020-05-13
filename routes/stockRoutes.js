@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const stockController = require("../controllers/stockController");
+const User = require("../models/user")
 
 // // Matches with "/api/books"
 // router.route("/")
@@ -20,7 +21,12 @@ const stockController = require("../controllers/stockController");
 //     .post(stockController.sellStock)
 
 router.route("/vend")
-    .post(stockController.vendStock())
-
+    .post((req, res) => {
+        console.log(req.body)
+        const { name, price, id } = req.body
+        User.findById(id).then(user => {
+            console.log(user)
+        })
+    })
 
 module.exports = router;
