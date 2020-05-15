@@ -2,9 +2,9 @@ import React from 'react';
 
 
 export default ()=> <div>
-          <div className="jumbotron" style={{textAlign: 'center'}}>
+          {/* <div className="jumbotron" style={{textAlign: 'center'}}>
             <h1 className="display-4">FAUX FINANCE</h1>
-          </div>
+          </div> */}
           <h2 style={{textAlign: 'center', margin: '0 0 1rem'}}>REGISTRATION FORM</h2>
           <form>
             <div className="row" style={{textAlign: 'center', margin: '0 0 3rem'}}>
