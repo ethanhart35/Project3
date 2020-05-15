@@ -23,7 +23,7 @@ class Display extends Component {
 
     // parse props to update what stock is being displayed, setstate at the end
     renderDisplay() {
-        let lastRefreshed = this.props.meta["3. Last Refreshed"].slice(0,10)
+        let lastRefreshed = this.props.meta["3. Last Refreshed"].slice(0, 10)
         let today = this.props.data[lastRefreshed]
         let average = ((Number(today["2. high"]) + Number(today["3. low"])) / 2).toFixed(4)
         this.setState({
@@ -41,7 +41,7 @@ class Display extends Component {
     setPrice(e, quantity) {
         e.preventDefault()
         let price = (Number(this.state.average) * Number(quantity)).toFixed(4)
-        this.setState({price: price, quantity: quantity})
+        this.setState({ price: price, quantity: quantity })
     }
 
     vend(e) {
@@ -52,7 +52,7 @@ class Display extends Component {
         let vendPrice = this.state.price
         let vendQuantity = this.state.quantity
 
-        let stats = { name, vendPrice, vendQuantity ,id }
+        let stats = { name, vendPrice, vendQuantity, id }
         API.vendStock(stats).then(res => {
             console.log(res)
         })
@@ -61,6 +61,18 @@ class Display extends Component {
     render() {
         return (
             <div className="container-fluid">
+
+                <div className="row">
+                    <div className="col">
+                        <h3>User Name: {this.props.user.name}</h3>
+                    </div>
+                    <div className="col">
+                        <h5>Net Worth: {this.props.user.worth}</h5>
+                    </div>
+                    {/* <div className="col">
+                        <h5>Price: {this.state.price}$</h5>
+                    </div> */}
+                </div>
 
                 <div className="row">
                     <div className="col">

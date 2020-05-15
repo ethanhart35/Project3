@@ -54,10 +54,10 @@ class Market extends Component {
                 ticker: "WMT"
             }, {
                 quantity: 80,
-                ticker: "WMT"
+                ticker: "EA"
             }, {
                 quantity: 20,
-                ticker: "WMT"
+                ticker: "MDO.BER"
             }, {
                 quantity: 40,
                 ticker: "WMT"
@@ -108,9 +108,14 @@ class Market extends Component {
     googleStock(e, search) {
         e.preventDefault()
         let currentComponent = this
+        console.log(search)
         if (search === "") return false
         API.searchStock(search).then(res => {
-            if (res.data.bestMatches === [] || res.data.Note !== undefined) return false
+            console.log(res)
+            if (res.data.bestMatches.length === 0 || res.data.Note !== undefined) {
+                console.log("stock search failure")
+                return false
+            }
             currentComponent.setState({ search: res.data.bestMatches })
         })
     }
