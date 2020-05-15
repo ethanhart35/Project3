@@ -148,6 +148,7 @@ class Market extends Component {
     render() {
         return (
             <div>
+                <h1></h1>
                 <Carousel responsive={responsive}
                     swipeable={false}
                     draggable={false}

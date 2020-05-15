@@ -20,6 +20,7 @@ class Register extends Component {
 
     render() {
         return (
+<<<<<<< Updated upstream
             <div id="register">
 
                 {/* <div className="jumbotron" style={{ textAlign: 'center' }}> */}
@@ -194,6 +195,27 @@ class Register extends Component {
                                         <button type="submit" className="btn btn-primary" id="submit">Submit</button>
                                     </form>
                                 </div>
+=======
+            <div>
+                <div className="jumbotron" style={{ textAlign: 'center' }}>
+                    <h1 className="display-4">FAUX FINANCE</h1>
+                </div>
+                <h2 style={{ textAlign: 'center', margin: '0 0 1rem' }}>REGISTRATION FORM</h2>
+                <form onSubmit={e => this.formSubmit(e, this.refs.name.value, this.refs.email.value, this.refs.password1.value, this.refs.password2.value)}>
+                    <div className="row" style={{ textAlign: 'center', margin: '0 0 3rem' }}>
+                        <div className="col">
+                            <input type="text" className="form-control" placeholder="First name" id="firstn" />
+                        </div>
+                        <div className="col">
+                            <input type="text" className="form-control" placeholder="Last name" id="lastn" />
+                        </div>
+                    </div>
+                    <div className="row" style={{ textAlign: 'center', margin: '0 0 1rem' }}>
+                        <div className="col">
+                            <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Username</label>
+                            <div className="input-group mb-2 mr-sm-2">
+                                <input type="text" className="form-control" placeholder="Username" id="usern" />
+>>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>
