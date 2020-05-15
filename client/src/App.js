@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 import React, { Component } from "react"
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import history from './utils/history';
 import API from "./utils/API"
 import "./components/Nav.css";
 // import Nav from "./components/Nav";
-=======
-import React from "react";
-import Nav from "./components/Nav";
-
->>>>>>> 7a914269a6db8e14fe268b76f5ea525bac7695d0
 import HomePage from "./pages/HomePage/HomePage";
 import Articles from "./pages/Articles/articles";
 import Market from './pages/Market';
@@ -17,7 +11,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 
-<<<<<<< HEAD
 class App extends Component {
   state = {
     user: {
@@ -99,21 +92,6 @@ class App extends Component {
       </div>
     );
   }
-=======
-
-function App() {
-  return (
-    <div>
-      <Nav /> 
-      <Router>
-        <div>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path="/articles" component={Articles} />
-        </div>
-      </Router>
-    </div>
-  );
->>>>>>> 7a914269a6db8e14fe268b76f5ea525bac7695d0
 }
 
 export default App;
