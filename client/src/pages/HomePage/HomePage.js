@@ -5,15 +5,12 @@ import Jumbo from '../../components/Jumbotron'
 
 
 function HomePage(props) {
-    return <>
-    <Jumbo/>
-    <Graph />
-    <div id='charts' style={{height:"100vh"}}>
-    {/* <StockNav/> */}
-       </div>
-    </>
-  }
-  
+  return <>
+    <Jumbo />
+    {/* <Graph /> */}
+  </>
+}
+
 
 
 export default HomePage
