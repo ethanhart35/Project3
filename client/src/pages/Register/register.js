@@ -21,10 +21,6 @@ class Register extends Component {
         return (
             <div id="register">
 
-                {/* <div className="jumbotron" style={{ textAlign: 'center' }}> */}
-                {/* <h1 className="display-4">FAUX FINANCE</h1> */}
-                {/* </div> */}
-                {/* <Jumbo/> */}
                 <div className="row">
                     <div className="container">
                         <div className="col-md-6 offset-md-3">

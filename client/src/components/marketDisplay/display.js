@@ -7,6 +7,7 @@ class Display extends Component {
     }
     state = {
         name: "",
+        quantity: 0,
         open: 1,
         high: 2,
         low: 3,
@@ -40,17 +41,18 @@ class Display extends Component {
     setPrice(e, quantity) {
         e.preventDefault()
         let price = (Number(this.state.average) * Number(quantity)).toFixed(4)
-        this.setState({price: price})
+        this.setState({price: price, quantity: quantity})
     }
 
     vend(e) {
         e.preventDefault()
 
         let id = this.props.user._id
-        let name = this.props.meta["2. Symbol"]
-        let price = this.state.price
+        let name = this.props.meta["2. Symbol"].toString()
+        let vendPrice = this.state.price
+        let vendQuantity = this.state.quantity
 
-        let stats = { name, price, id }
+        let stats = { name, vendPrice, vendQuantity ,id }
         API.vendStock(stats).then(res => {
             console.log(res)
         })
@@ -65,10 +67,10 @@ class Display extends Component {
                         <h3>Company Name: {this.state.name}</h3>
                     </div>
                     <div className="col">
-                        <h5>Daily average: {this.state.average}</h5>
+                        <h5>Average (high+over/2): {this.state.average}</h5>
                     </div>
                     <div className="col">
-                        <h5>Price: {this.state.price}</h5>
+                        <h5>Price: {this.state.price}$</h5>
                     </div>
                     <div className="col">
                         <form onSubmit={e => this.vend(e)}>

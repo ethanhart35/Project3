@@ -1,5 +1,9 @@
 const User = require("../models/user")
 
+// ================================================================
+// OLD AND OUTDATED
+// ===================================================================
+
 module.exports = {
 
     buyStock: function (req, res) {

@@ -1,31 +1,57 @@
 const router = require("express").Router();
-const stockController = require("../controllers/stockController");
 const User = require("../models/user")
-
-// // Matches with "/api/books"
-// router.route("/")
-//   .get(booksController.findAll)
-//   .post(booksController.create);
-
-// // Matches with "/api/books/:id"
-// router
-//   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove);
-
-// router.route("/buy")
-//     .post(stockController.buyStock)
-
-// router.route("/sell")
-//     .post(stockController.sellStock)
 
 router.route("/vend")
     .post((req, res) => {
-        console.log(req.body)
-        const { name, price, id } = req.body
+        const { name, vendPrice, vendQuantity, id } = req.body
         User.findById(id).then(user => {
-            console.log(user)
+
+            // find already saved data and update
+            var ownedStocks = false
+            for (var i = 0; i < user.stockData.length; i++) {
+                if (user.stockData[i].name === name) {
+                    ownedStocks = true
+
+                    let quantity = Number(user.stockData[i].quantity) += Number(vendQuantity)
+                    let purchaseValue = Number(user.stockData[i].purchaseValue) += Number(vendPrice)
+
+                    console.log(quantity+" "+purchaseValue)
+                    // User.updateOne({ _id: id, "stockData.name": name }, {
+                    //     '$set': {
+                    //         'stockData.$.quantity': quantity,
+                    //         'stockData.$.purchaseValue': purchaseValue
+                    //     }
+                    // }).then(res => console.log(res))
+
+                    User.update({ "_id": id, "stockData.name": name }
+                        , {
+                            '$set': {
+                                'stockData.$.quantity': quantity,
+                                'stockData.$.purchaseValue': purchaseValue
+                            }
+                        }
+                    ).then(res => console.log(res))
+
+                    console.log("stock updated")
+                }
+            }
+
+            // if not saved create a new stock
+            if (!ownedStocks) {
+                console.log("creating new stock")
+
+                let quantity = vendQuantity
+                let purchaseValue = vendPrice
+                let stock = { name, quantity, purchaseValue }
+
+                user.stockData.push(stock)
+                user.save()
+            }
+
+            // corrects users networth
+            let netWorth = user.worth + -vendPrice
+            User.findByIdAndUpdate({ _id: id }, { $push: { worth: netWorth } })
+            console.log("networth changed")
         })
     })
 

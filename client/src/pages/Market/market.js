@@ -87,6 +87,7 @@ class Market extends Component {
     // api the stock and display data on the graph
     loadGraph(e, ticker, time) {
         e.preventDefault()
+        console.log(ticker)
         if (ticker === "") { return false }
 
         API.graphStockSearch(ticker, time).then(res => {
@@ -146,13 +147,14 @@ class Market extends Component {
                 >
                     {   // user specific 
                         this.props.user.stockData.map((stock, i) => {
-                            return <div className="col p-2 m-3 border">
-                                <div key={i}>
-                                    <h2>{stock.ticker}</h2>
-                                    <p className="text-muted">{stock.name}</p>
-                                    <p cl></p>
+                            return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
+                                <div className="col p-2 m-3 border">
+                                    <div key={i}>
+                                        <h2>{stock.ticker}</h2>
+                                        <p className="text-muted">{stock.name}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         })
                     }
                     {   // static stock data
