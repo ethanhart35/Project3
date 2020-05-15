@@ -1,5 +1,10 @@
 #register {
-    background-image: url("../../components/images/plant$.jpg");
-    background: cover;
-    height: 125vh; 
+    background-image: url("../../components/images/origpig.jpg");
+    /* background: cover; */
+   background-repeat: no-repeat;
+        
+    height: 100vh; 
+}
+.h2, h2 {
+    color: white; 
 }
