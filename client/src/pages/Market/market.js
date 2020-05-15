@@ -93,23 +93,21 @@ class Market extends Component {
 
     // checks for user, and updates staticStock or UserStocks when mounting
     componentDidMount() {
-        // if (this.props.user.name === "Guest" && this.staticStock === []) {
-        //     this.setState({ staticStock: this.state.hold })
-        // }
-        // if (this.props.user.name !== "Guest" && this.state.staticStock !== []) {
-        //     this.setState({ staticStock: [] })
-        // }
+        if (this.props.user.name === "Guest" && this.staticStock === []) {
+            console.log("componentMount Guest data")
+            this.setState({ staticStock: this.state.hold })
+        }
+        if (this.props.user.name !== "Guest" && this.state.staticStock !== []) {
+            console.log("componentMount User data")
+            this.setState({ staticStock: [] })
+        }
     }
 
     // renders staticstocks + unrenders userStocks if the user logs out while on market page
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("update tick")
-        console.log(this.state.staticStock)
-        console.log(this.props.user)
-        if(this.props.user.stockData === []){
-            console.log("tick5")
+        if(this.props.user.name !== prevProps.user.name){
+            this.setState({staticStock: this.state.hold})
         }
-
     }
 
     // api the stock and display data on the graph
