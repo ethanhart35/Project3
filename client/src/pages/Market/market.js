@@ -219,6 +219,7 @@ class Market extends Component {
                     data={this.state.APIdata}
                     meta={this.state.meta}
                     user={this.props.user}
+                    callback={this.props.callback}
                 />
 
                 <Graph APIdata={this.state.APIdata} />

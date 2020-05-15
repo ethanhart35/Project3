@@ -55,6 +55,7 @@ class Display extends Component {
         let stats = { name, vendPrice, vendQuantity, id }
         API.vendStock(stats).then(res => {
             console.log(res)
+            this.props.callback(res.data)
         })
     }
 
