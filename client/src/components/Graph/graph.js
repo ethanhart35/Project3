@@ -140,7 +140,9 @@ class Graph extends Component {
     render() {
         return (
             <div>
-                <br></br><br></br>
+                <br>
+                </br>
+                <br></br>
                 <form className="form-inline" onSubmit={this.generateStock.bind(this)}>
                     <div class="form-group p-2">
                         <label for="name">Stock Label</label>
