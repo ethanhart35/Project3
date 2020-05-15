@@ -28,6 +28,7 @@ class App extends Component {
   // userCallback is passed as props into Login page, when login is sucessful it pulls user data into app so
   // the entire app can use the users data
   userLogin(data) {
+    console.log(data)
     this.setState({ user: data.user })
   }
   // when userCallback uses setstate it automatically triggers this
@@ -44,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="minHeight">
         <Router>
           <div>
             <nav className="navbar navbar-light">

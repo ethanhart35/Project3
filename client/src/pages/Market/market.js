@@ -51,19 +51,16 @@ class Market extends Component {
                 ticker: "GOOG"
             }, {
                 quantity: 50,
-                ticker: ""
+                ticker: "WMT"
             }, {
-                quantity: 10,
-                ticker: "TTS"
+                quantity: 80,
+                ticker: "WMT"
             }, {
-                quantity: 100,
-                ticker: "HSS"
+                quantity: 20,
+                ticker: "WMT"
             }, {
-                quantity: 50,
-                ticker: "sHS"
-            }, {
-                quantity: 10,
-                ticker: "TTS"
+                quantity: 40,
+                ticker: "WMT"
             }
         ],
     }
@@ -140,9 +137,9 @@ class Market extends Component {
                 >
                     {   // user specific 
                         this.props.user.stockData.map((stock, i) => (
-                            <a key={i} onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
+                            <a key={i} onClick={e => this.loadGraph(e, stock.name, this.refs.time.value)}>
                                 <div className="p-2 m-3 border">
-                                    <h2 className="text-bold text-dark">{stock.ticker}</h2>
+                                    <h2 className="text-bold text-dark">{stock.name}</h2>
                                     <p className="text-muted">Owned:{stock.quantity}</p>
                                 </div>
                             </a>

@@ -24,10 +24,8 @@ class Display extends Component {
     // parse props to update what stock is being displayed, setstate at the end
     renderDisplay() {
         let lastRefreshed = this.props.meta["3. Last Refreshed"].slice(0,10)
-        console.log(lastRefreshed)
         let today = this.props.data[lastRefreshed]
         let average = ((Number(today["2. high"]) + Number(today["3. low"])) / 2).toFixed(4)
-        console.log(average)
         this.setState({
             name: this.props.meta["2. Symbol"],
             worth: this.props.user.worth,
