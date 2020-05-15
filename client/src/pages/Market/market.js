@@ -148,9 +148,9 @@ class Market extends Component {
                     {   // user specific 
                         this.props.user.stockData.map((stock, i) => {
                             return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
-                                <div className="col p-2 m-3 border">
+                                <div className="p-2 m-3 border">
                                     <div key={i}>
-                                        <h2>{stock.ticker}</h2>
+                                        <h2 className="text-bold">{stock.ticker}</h2>
                                         <p className="text-muted">{stock.name}</p>
                                     </div>
                                 </div>
@@ -160,9 +160,9 @@ class Market extends Component {
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => {
                             return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
-                                <div className="col p-2 m-3 border">
+                                <div className="p-2 m-3 border">
                                     <div key={i}>
-                                        <h2>{stock.ticker}</h2>
+                                        <h2 className="text-bold text-dark">{stock.ticker}</h2>
                                         <p className="text-muted">{stock.name}</p>
                                     </div>
                                 </div>
@@ -171,10 +171,20 @@ class Market extends Component {
                     }
                 </Carousel>
 
-                <form onSubmit={e => this.googleStock(e, this.refs.search.value)}>
-                    <lablel>Ticker Search</lablel>
-                    <input type="text" ref="search"></input>
-                    <input type='submit' value='Submit' />
+                <form className="form-inline" onSubmit={e => this.googleStock(e, this.refs.search.value)}>
+                    <div className="form-group p-2">
+                        <lablel>Ticker Search</lablel>
+                        <input type="text" ref="search"></input>
+                        <input type='submit' value='Submit' />
+                    </div>
+                    <div className="form-group p-2">
+                        <label for="time">Choose a timeframe:</label>
+                        <select ref="time">
+                            <option value="Time_Series_Daily">Daily</option>
+                            <option value="Time_Series_Weekly">Weekly</option>
+                            <option value="Time_Series_Monthly">Monthly</option>
+                        </select>
+                    </div>
                 </form>
 
                 {this.state.search.map((google, i) => (
