@@ -35,53 +35,46 @@ class Market extends Component {
     state = {
         test: "test",
         search: [],
+        hold: [],
         staticStock: [
             {
-                name: "Corporation",
                 quantity: 100,
                 ticker: "IBM"
             }, {
-                name: "Local buisness",
                 quantity: 50,
-                ticker: "sHS"
+                ticker: "AAPL"
             }, {
-                name: "Lemonade stand",
                 quantity: 10,
                 ticker: "TTS"
             }, {
-                name: "Corporation",
                 quantity: 100,
-                ticker: "HSS"
+                ticker: "GOOG"
             }, {
-                name: "Local buisness",
                 quantity: 50,
-                ticker: "sHS"
+                ticker: ""
             }, {
-                name: "Lemonade stand",
                 quantity: 10,
                 ticker: "TTS"
             }, {
-                name: "Corporation",
                 quantity: 100,
                 ticker: "HSS"
             }, {
-                name: "Local buisness",
                 quantity: 50,
                 ticker: "sHS"
             }, {
-                name: "Lemonade stand",
                 quantity: 10,
                 ticker: "TTS"
             }
         ],
     }
 
-    // to be used in the carosell to search all the tickers and give back percentage changes
-    // cant work becouse limited API calls
-    loadStocks(data) {
-        console.log(data)
-        this.setState({ user: data })
-        console.log(this.state)
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.user._id !== undefined && this.staticStock !== []) {
+            this.setState({ staticStock: [] })
+        }
+        if (this.props.user._id === undefined && this.state.staticStock === []) {
+            this.setState({ staticStock: this.state.hold })
+        }
     }
 
     // api the stock and display data on the graph
@@ -146,30 +139,43 @@ class Market extends Component {
                     itemClass="carousel-item-padding-40-px"
                 >
                     {   // user specific 
-                        this.props.user.stockData.map((stock, i) => {
-                            return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
+                        this.props.user.stockData.map((stock, i) => (
+                            <a key={i} onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
                                 <div className="p-2 m-3 border">
-                                    <div key={i}>
-                                        <h2 className="text-bold">{stock.ticker}</h2>
-                                        <p className="text-muted">{stock.name}</p>
-                                    </div>
+                                    <h2 className="text-bold text-dark">{stock.ticker}</h2>
+                                    <p className="text-muted">Owned:{stock.quantity}</p>
                                 </div>
                             </a>
-                        })
+                        ))
                     }
                     {   // static stock data
-                        this.state.staticStock.map((stock, i) => {
-                            return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
+                        this.state.staticStock.map((stock, i) => (
+                            <a key={i} onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
                                 <div className="p-2 m-3 border">
-                                    <div key={i}>
-                                        <h2 className="text-bold text-dark">{stock.ticker}</h2>
-                                        <p className="text-muted">{stock.name}</p>
-                                    </div>
+                                    <h2 className="text-bold text-dark">{stock.ticker}</h2>
+                                    <p className="text-muted">Owned:{stock.quantity}</p>
                                 </div>
                             </a>
-                        })
+                        ))
                     }
                 </Carousel>
+
+                {/* <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
+                    <div className="form-group p-2">
+                        <label for="ticker">Stock Label</label>
+                        <input type='text' ref="ticker" />
+                    </div>
+                    <div className="form-group p-2">
+                        <label for="time">Choose a timeframe:</label>
+                        <select ref="time">
+                            <option value="Time_Series_Daily">Daily</option>
+                            <option value="Time_Series_Weekly">Weekly</option>
+                            <option value="Time_Series_Monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <input type='submit' value='Submit' />
+                </form> */}
 
                 <form className="form-inline" onSubmit={e => this.googleStock(e, this.refs.search.value)}>
                     <div className="form-group p-2">
@@ -211,23 +217,6 @@ class Market extends Component {
                     meta={this.state.meta}
                     user={this.props.user}
                 />
-
-                <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
-                    <div className="form-group p-2">
-                        <label for="ticker">Stock Label</label>
-                        <input type='text' ref="ticker" />
-                    </div>
-                    <div className="form-group p-2">
-                        <label for="time">Choose a timeframe:</label>
-                        <select ref="time">
-                            <option value="Time_Series_Daily">Daily</option>
-                            <option value="Time_Series_Weekly">Weekly</option>
-                            <option value="Time_Series_Monthly">Monthly</option>
-                        </select>
-                    </div>
-
-                    <input type='submit' value='Submit' />
-                </form>
 
                 <Graph APIdata={this.state.APIdata} />
             </div>
