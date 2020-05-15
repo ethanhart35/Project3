@@ -35,7 +35,33 @@ class Market extends Component {
     state = {
         test: "test",
         search: [],
-        hold: [],
+        hold: [
+            {
+                quantity: 100,
+                ticker: "IBM"
+            }, {
+                quantity: 50,
+                ticker: "AAPL"
+            }, {
+                quantity: 10,
+                ticker: "TTS"
+            }, {
+                quantity: 100,
+                ticker: "GOOG"
+            }, {
+                quantity: 50,
+                ticker: "WMT"
+            }, {
+                quantity: 80,
+                ticker: "EA"
+            }, {
+                quantity: 20,
+                ticker: "MDO.BER"
+            }, {
+                quantity: 40,
+                ticker: "WMT"
+            }
+        ],
         staticStock: [
             {
                 quantity: 100,
@@ -65,14 +91,25 @@ class Market extends Component {
         ],
     }
 
-    // checks for user, and displays staticStock or UserStocks
+    // checks for user, and updates staticStock or UserStocks when mounting
     componentDidMount() {
-        if (this.props.user.name === "Guest" && this.staticStock === []) {
-            this.setState({ staticStock: this.state.hold })
+        // if (this.props.user.name === "Guest" && this.staticStock === []) {
+        //     this.setState({ staticStock: this.state.hold })
+        // }
+        // if (this.props.user.name !== "Guest" && this.state.staticStock !== []) {
+        //     this.setState({ staticStock: [] })
+        // }
+    }
+
+    // renders staticstocks + unrenders userStocks if the user logs out while on market page
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("update tick")
+        console.log(this.state.staticStock)
+        console.log(this.props.user)
+        if(this.props.user.stockData === []){
+            console.log("tick5")
         }
-        if (this.props.user.name !== "Guest" && this.state.staticStock !== []) {
-            this.setState({ staticStock: [] })
-        }
+
     }
 
     // api the stock and display data on the graph
@@ -111,7 +148,7 @@ class Market extends Component {
         let currentComponent = this
         if (search === "") return false
         API.searchStock(search).then((res, err) => {
-            if(err) throw err
+            if (err) throw err
             console.log(res)
             if (res.data.bestMatches.length === 0 || res.data.Note !== undefined) {
                 console.log("stock search failure")

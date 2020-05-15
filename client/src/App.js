@@ -49,15 +49,11 @@ class App extends Component {
   }
 
   userUpdate(data) {
-    console.log(data)
     this.setState({ user: data })
   }
 
   // when userLogin/logout uses setstate it automatically triggers this
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log("componentUpdateTrigger")
-    console.log(prevState)
-    console.log(this.state)
     if (this.state.user._id !== prevState.user._id) {
       this.setState({ user: this.state.user })
       console.log("user data set")
