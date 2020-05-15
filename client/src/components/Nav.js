@@ -6,6 +6,16 @@ const Nav = (props) => (
     <nav className="navbar navbar-light">
         <a className="navbar-brand" id="brand" href="/">FauxFinance</a>
 
+
+
+        <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Articles</li>
+  </ol>
+</nav>
+
+
+
         <ul className="nav">
                 <li className="nav-item active">
                     <a className="nav-link btn btn-primary py-0" href="/articles">Articles</a>
