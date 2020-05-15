@@ -27,10 +27,10 @@ class Register extends Component {
                 {/* </div> */}
                 {/* <Jumbo/> */}
                 <div id="body">
-                    <div className="container" class="float-right">
+                    <div className="container" >
                         <div className="row">
                             <div className="col-md-6 offset-md-3">
-                                <div className="card" class="float-right" >
+                                <div >
                                     <div className="card-body" >
                                         <h2 style={{ textAlign: 'center', margin: '0 0 1rem' }}>REGISTRATION FORM</h2>
                                         <form>
