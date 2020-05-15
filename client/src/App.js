@@ -60,22 +60,22 @@ class App extends Component {
 
               <ul className="nav">
                 <li className="nav-item active">
-                  <Link className="nav-link btn btn-primary py-0" to={"/articles"}>Articles</Link>
+                  <Link className="nav-link btn py-0" to={"/articles"}>Articles</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link btn btn-primary py-0" to={"/market"}>Market</Link>
+                  <Link className="nav-link btn  py-0" to={"/market"}>Market</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link btn btn-primary py-0" to={"/login"}>Log In</Link>
+                  <Link className="nav-link btn  py-0" to={"/login"}>Log In</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link btn btn-primary py-0" onClick={API.logoutUser}>Log out</a>
+                  <a className="nav-link btn  py-0" onClick={API.logoutUser}>Log out</a>
                 </li>
+                {/* <li className="nav-item">
+                    <a className="nav-link btn py-0" href="/profile">Profile</a>
+                </li> */}
                 <li className="nav-item">
-                    <a className="nav-link btn btn-primary py-0" href="/profile">Profile</a>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link btn btn-danger py-0" to={"/register"}>Register</Link>
+                  <Link className="nav-link btn py-0" to={"/register"}>Register</Link>
                 </li>
               </ul>
             </nav>
