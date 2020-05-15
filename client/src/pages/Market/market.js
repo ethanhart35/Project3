@@ -65,12 +65,13 @@ class Market extends Component {
         ],
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.user._id !== undefined && this.staticStock !== []) {
-            this.setState({ staticStock: [] })
-        }
-        if (this.props.user._id === undefined && this.state.staticStock === []) {
+    // checks for user, and displays staticStock or UserStocks
+    componentDidMount() {
+        if (this.props.user.name === "Guest" && this.staticStock === []) {
             this.setState({ staticStock: this.state.hold })
+        }
+        if (this.props.user.name !== "Guest" && this.state.staticStock !== []) {
+            this.setState({ staticStock: [] })
         }
     }
 

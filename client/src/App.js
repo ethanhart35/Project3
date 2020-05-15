@@ -15,9 +15,8 @@ class App extends Component {
     const currentComponent = this
     this.state = {
       user: {
-        // _id: "5eabab7fb333e718e4f0e8aa",
-        // name: "",
-        // password: "password",
+        _id: "",
+        name: "Guest",
         stockData: []
       }
     }
