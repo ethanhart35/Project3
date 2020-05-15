@@ -20,8 +20,6 @@ class App extends Component {
         stockData: []
       }
     }
-    // preserve the initial state in a new object
-    this.baseState = this.state
   }
 
   // userCallback is passed as props into Login page, when login is sucessful it pulls user data into app so
@@ -32,14 +30,18 @@ class App extends Component {
   }
   // when userCallback uses setstate it automatically triggers this
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.user.name !== prevState.user.name) {
+    if (this.state.user._id !== prevState.user._id) {
       this.setState({ user: this.state.user })
     }
   }
 
-  // logout nonfuctional, needs to delete the users data from the app or replace it with something blank
   userLogout() {
-    this.setState(this.baseState)
+    var logout = {
+      _id: "",
+      name: "Guest",
+      stockData: []
+    }
+    this.setState({ user: logout})
   }
 
   render() {

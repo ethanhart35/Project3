@@ -4,54 +4,52 @@ const User = require("../models/user")
 router.route("/vend")
     .post((req, res) => {
         const { name, vendPrice, vendQuantity, id } = req.body
-        User.findById(id).then(user => {
+
+        User.findOne({ _id: id }, (err, user) => {
+            if (err) throw err;
 
             // find already saved data and update
-            var ownedStocks = false
+            let ownedStocks = false
+            let index = 0
             for (var i = 0; i < user.stockData.length; i++) {
                 if (user.stockData[i].name === name) {
                     ownedStocks = true
-
-                    let quantity = Number(user.stockData[i].quantity) += Number(vendQuantity)
-                    let purchaseValue = Number(user.stockData[i].purchaseValue) += Number(vendPrice)
-
-                    console.log(quantity+" "+purchaseValue)
-                    // User.updateOne({ _id: id, "stockData.name": name }, {
-                    //     '$set': {
-                    //         'stockData.$.quantity': quantity,
-                    //         'stockData.$.purchaseValue': purchaseValue
-                    //     }
-                    // }).then(res => console.log(res))
-
-                    User.update({ "_id": id, "stockData.name": name }
-                        , {
-                            '$set': {
-                                'stockData.$.quantity': quantity,
-                                'stockData.$.purchaseValue': purchaseValue
-                            }
-                        }
-                    ).then(res => console.log(res))
-
-                    console.log("stock updated")
+                    index = i
                 }
             }
 
-            // if not saved create a new stock
-            if (!ownedStocks) {
-                console.log("creating new stock")
+            // if saved update
+            if (ownedStocks) {
+                let prevQuantity = Number(user.stockData[index].quantity)
+                let newQuantity = Number(vendQuantity)
+                let updateQuantity = prevQuantity += newQuantity
 
+                let prevValue = Number(user.stockData[index].purchaseValue)
+                let newValue = Number(vendPrice)
+                let updateValue = prevValue += newValue
+
+                user.stockData[index].quantity = updateQuantity
+                user.stockData[index].purchaseValue = updateValue
+
+                // if not saved create a new stock
+            } else {
                 let quantity = vendQuantity
                 let purchaseValue = vendPrice
                 let stock = { name, quantity, purchaseValue }
 
                 user.stockData.push(stock)
-                user.save()
             }
 
             // corrects users networth
-            let netWorth = user.worth + -vendPrice
-            User.findByIdAndUpdate({ _id: id }, { $push: { worth: netWorth } })
-            console.log("networth changed")
+            let netWorth = user.worth + - vendPrice
+            user.worth = netWorth
+
+            // saves all the changed data to mongo
+            user.save()
+
+            // returns updated data, its not calling new data from mongo, just forwarding the data
+            // that was sent back for editing
+            res.json(user)
         })
     })
 
