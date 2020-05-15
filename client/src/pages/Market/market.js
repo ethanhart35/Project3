@@ -109,9 +109,9 @@ class Market extends Component {
     googleStock(e, search) {
         e.preventDefault()
         let currentComponent = this
-        console.log(search)
         if (search === "") return false
-        API.searchStock(search).then(res => {
+        API.searchStock(search).then((res, err) => {
+            if(err) throw err
             console.log(res)
             if (res.data.bestMatches.length === 0 || res.data.Note !== undefined) {
                 console.log("stock search failure")

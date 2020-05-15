@@ -26,9 +26,9 @@ class Display extends Component {
         let lastRefreshed = this.props.meta["3. Last Refreshed"].slice(0, 10)
         let today = this.props.data[lastRefreshed]
         let average = ((Number(today["2. high"]) + Number(today["3. low"])) / 2).toFixed(4)
+        let netWorth = 
         this.setState({
             name: this.props.meta["2. Symbol"],
-            worth: this.props.user.worth,
             average: average,
             open: today["1. open"],
             high: today["2. high"],
@@ -67,7 +67,7 @@ class Display extends Component {
                         <h3>User Name: {this.props.user.name}</h3>
                     </div>
                     <div className="col">
-                        <h5>Net Worth: {this.props.user.worth}</h5>
+                        <h5>Net Worth: {this.props.user.worth.toFixed(4)}</h5>
                     </div>
                     {/* <div className="col">
                         <h5>Price: {this.state.price}$</h5>

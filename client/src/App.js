@@ -17,6 +17,7 @@ class App extends Component {
       user: {
         _id: "",
         name: "Guest",
+        worth: 0,
         stockData: []
       }
     }
@@ -39,6 +40,7 @@ class App extends Component {
     var logout = {
       _id: "",
       name: "Guest",
+      worth: 0,
       stockData: []
     }
     this.setState({ user: logout})
