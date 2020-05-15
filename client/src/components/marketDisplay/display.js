@@ -79,7 +79,7 @@ class Display extends Component {
                         <h3>Company Name: {this.state.name}</h3>
                     </div>
                     <div className="col">
-                        <h5>Average (high+over/2): {this.state.average}</h5>
+                        <h5>Average (high+low/2): {this.state.average}</h5>
                     </div>
                     <div className="col">
                         <h5>Price: {this.state.price}$</h5>
