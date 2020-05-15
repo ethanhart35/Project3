@@ -110,7 +110,7 @@ class Market extends Component {
                 default:
             }
             console.log(res)
-            this.setState({ APIdata: res.data[dataInterval], meta: res.data["Meta Data"], search: []})
+            this.setState({ APIdata: res.data[dataInterval], meta: res.data["Meta Data"], search: [] })
         })
     }
 
@@ -146,7 +146,7 @@ class Market extends Component {
                 >
                     {   // user specific 
                         this.props.user.stockData.map((stock, i) => {
-                            return <div className="col p-2 m-3 border bg-sucess">
+                            return <div className="col p-2 m-3 border">
                                 <div key={i}>
                                     <h2>{stock.ticker}</h2>
                                     <p className="text-muted">{stock.name}</p>
@@ -158,7 +158,7 @@ class Market extends Component {
                     {   // static stock data
                         this.state.staticStock.map((stock, i) => {
                             return <a onClick={e => this.loadGraph(e, stock.ticker, this.refs.time.value)}>
-                                <div className="col p-2 m-3 border bg-danger">
+                                <div className="col p-2 m-3 border">
                                     <div key={i}>
                                         <h2>{stock.ticker}</h2>
                                         <p className="text-muted">{stock.name}</p>
@@ -169,30 +169,6 @@ class Market extends Component {
                     }
                 </Carousel>
 
-                <Display
-                    data={this.state.APIdata}
-                    meta={this.state.meta}
-                    user={this.props.user}
-                />
-
-                {/* https://www.alphavantage.co/documentation/  SEARCH ENDPOINTS API call could help autofill the .refs.name      set it on a ticker so the call goes off as second or 2 after they stop typing */}
-                <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
-                    <div className="form-group p-2">
-                        <label for="ticker">Stock Label</label>
-                        <input type='text' ref="ticker" />
-                    </div>
-                    <div className="form-group p-2">
-                        <label for="time">Choose a timeframe:</label>
-                        <select ref="time">
-                            <option value="Time_Series_Daily">Daily</option>
-                            <option value="Time_Series_Weekly">Weekly</option>
-                            <option value="Time_Series_Monthly">Monthly</option>
-                        </select>
-                    </div>
-
-                    <input type='submit' value='Submit' />
-                </form>
-
                 <form onSubmit={e => this.googleStock(e, this.refs.search.value)}>
                     <lablel>Ticker Search</lablel>
                     <input type="text" ref="search"></input>
@@ -200,7 +176,7 @@ class Market extends Component {
                 </form>
 
                 {this.state.search.map((google, i) => (
-                    <div key={i} className="border container-fluid">
+                    <div key={i} className="border container-fluid" onClick={e => this.loadGraph(e, google["1. symbol"], this.refs.time.value)}>
                         <div className="row">
                             <div className="col">
                                 {google["1. symbol"]}
@@ -217,6 +193,29 @@ class Market extends Component {
                         </div>
                     </div>
                 ))}
+
+                <Display
+                    data={this.state.APIdata}
+                    meta={this.state.meta}
+                    user={this.props.user}
+                />
+
+                <form className="form-inline" onSubmit={e => this.loadGraph(e, this.refs.ticker.value, this.refs.time.value)}>
+                    <div className="form-group p-2">
+                        <label for="ticker">Stock Label</label>
+                        <input type='text' ref="ticker" />
+                    </div>
+                    <div className="form-group p-2">
+                        <label for="time">Choose a timeframe:</label>
+                        <select ref="time">
+                            <option value="Time_Series_Daily">Daily</option>
+                            <option value="Time_Series_Weekly">Weekly</option>
+                            <option value="Time_Series_Monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <input type='submit' value='Submit' />
+                </form>
 
                 <Graph APIdata={this.state.APIdata} />
             </div>

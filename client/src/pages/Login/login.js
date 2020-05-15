@@ -44,19 +44,6 @@ class Login extends Component {
 
                                     <form onSubmit={e => this.formSubmit(e, this.refs.email.value, this.refs.password.value)}>
 
-<<<<<<< HEAD
-                                    <div className="form-group">
-                                        <label>Email address</label>
-                                        <input className="form-control" ref="email" placeholder="Enter email" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Password</label>
-                                        <input type="password" className="form-control" ref="password" placeholder="Password" />
-                                    </div>
-                                    <button type="submit" className="btn btn-primary">Login</button>
-                                    <p className="text-muted">Need an account? <a href="/login">Register</a></p>
-                                </form>
-=======
                                         <div className="form-group">
                                             <label for="exampleInputEmail1">Email address</label>
                                             <input className="form-control" ref="email" placeholder="Enter email" />
@@ -69,7 +56,6 @@ class Login extends Component {
                                         <p className="text-muted">Need an account? <a href="/login">Register</a></p>
                                     </form>
                                 </div>
->>>>>>> 729d71e3b3245503f5fbba960189dbc0a5829e94
                             </div>
                         </div>
                     </div>
