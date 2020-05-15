@@ -2,13 +2,6 @@ import axios from "axios";
 var cheerio = require("cheerio");
 
 export default {
-  getStocks: function (ticker) {
-
-  },
-
-
-
-
   registerUser: function (data) {
     return axios.post("/auth/register", data)
   },
@@ -34,22 +27,14 @@ export default {
     var dataString = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + ticker + "&apikey=" + key
     return axios.get(dataString)
   },
-  // single use heavy data API search for detailed singular info
-  getStock: function (ticker) {
-
-  },
   searchStock: function (search) {
     var key = "Y630EXU2OC7ZDZ1G"
     var searchString = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + search + "&apikey=" + key
     return axios.get(searchString)
   },
-  buyStock: function (data) {
-    return axios.post("/stocks/buy", data)
+  vendStock: function (transaction) {
+    return axios.post("/stocks/vend", transaction)
   },
-  sellStock: function (data) {
-    return axios.post("/stocks/sell", data)
-  },
-
 
   scrape: function () {
     return axios.get("/api/scrape");
