@@ -57,8 +57,11 @@ class App extends Component {
           <div>
             <nav className="navbar navbar-light">
               <Link id="brand" to={"/"}>FauxFinance</Link>
-
+              
               <ul className="nav">
+                <li className="nav-item active">
+                  <Link id="user" to={"/"}>UserName</Link>
+                </li>
                 <li className="nav-item active">
                   <Link className="nav-link btn btn-primary py-0" to={"/articles"}>Articles</Link>
                 </li>

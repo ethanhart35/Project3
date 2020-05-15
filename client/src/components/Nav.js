@@ -5,6 +5,7 @@ import API from "../utils/API";
 const Nav = (props) => (
     <nav className="navbar navbar-light">
         <a className="navbar-brand" id="brand" href="/">FauxFinance</a>
+     
 
         <ul className="nav">
                 <li className="nav-item active">
