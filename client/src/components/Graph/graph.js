@@ -61,8 +61,9 @@ class Graph extends Component {
         }
     }
 
+    // when input new data, run the graphdataparsing if its new.
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.graphData === prevState.graphData) {
+        if (this.props.APIdata !== prevProps.APIdata) {
             this.reGenerateGraph()
         }
     }

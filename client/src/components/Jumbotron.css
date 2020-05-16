@@ -1,21 +1,16 @@
 .jumbotron {
      background-image: url("./images/plant$.jpg");
      background-size: cover;
-
-    /* background-repeat: no-repeat; */
-    /* background-position: bottom 50px right 100px; */
-    
-
-    font-style: Rightous; font-family: 'Righteous', cursive;
-    /* color:white; */
-    /* color: darkolivegreen; */
-    /* color: black;  */
-    /* text-shadow: 2px 2px #000000;  */
+     font-family: 'Righteous', cursive;
     height: 125vh;
+    color: darkslategray;
 }
 .display-4 {
     font-size: 200px;
 }
 .btn-warning {
-    color: goldenrod;
+    color: black;
+}
+.lead{
+    font-size: 50px;
 }

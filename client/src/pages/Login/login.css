@@ -1,10 +1,6 @@
 #login-body {
     /* background-color: #ecd96e; */
     background-image: url("../../components/images/coins.jpg");
-    /* height: 100vh;  */
     background: cover;
-    height: 100vh; 
-}
-.card {
-    margin-top: 160px;
+    min-height: 93vh;
 }
